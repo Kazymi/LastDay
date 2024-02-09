@@ -12,12 +12,14 @@ public class CharacterControllerSystem : MonoBehaviour, IPlayerController
 
     private CharacterAnimationController m_animationController;
     private StateMachine.StateMachine m_stateMachine;
+    private IPlayerTargetSearcher m_targetSearcher;
 
     public Vector3 PlayerPosition => transform.position;
 
     private void Awake()
     {
         m_animationController = new CharacterAnimationController(characterAnimator);
+        m_targetSearcher = ServiceLocator.GetService<IPlayerTargetSearcher>();
         OnInit();
     }
 
@@ -61,6 +63,17 @@ public class CharacterControllerSystem : MonoBehaviour, IPlayerController
             new FuncCondition(() => joystick.Direction == Vector2.zero)));
 
 
+        //SubMachine
+        var idleSubState = new State();
+        var lookAtState = new CharacterModelRotateState(characterBody);
+
+        //IdleSubState
+        idleSubState.AddTransition(new StateTransition(lookAtState,
+            new FuncCondition(() => m_targetSearcher.IsTargetFounded)));
+
+        lookAtState.AddTransition(new StateTransition(idleSubState,
+            new FuncCondition(() => m_targetSearcher.IsTargetFounded == false)));
         m_stateMachine = new StateMachine.StateMachine(idleState);
+        m_stateMachine.CreateSubMachine(idleSubState);
     }
 }

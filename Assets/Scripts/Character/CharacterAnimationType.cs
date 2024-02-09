@@ -1,5 +1,6 @@
 public enum CharacterAnimationType
 {
     Idle,
-    Walk
+    Walk,
+    LegsMove
 }

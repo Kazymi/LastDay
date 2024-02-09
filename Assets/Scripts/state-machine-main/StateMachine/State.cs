@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace StateMachine
 {
-    public abstract class State
+    public class State
     {
         public List<IStateTransition> Transitions { get; private set; } = new List<IStateTransition>();
         public virtual void Tick()

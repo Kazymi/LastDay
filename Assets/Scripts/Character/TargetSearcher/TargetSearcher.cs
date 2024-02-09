@@ -5,9 +5,9 @@ using UnityEngine;
 public class TargetSearcher : MonoBehaviour
 {
     [SerializeField] private TargetSearcherConfiguration targetSearcherConfiguration;
-    
-    private float currentTime; 
-    
+
+    private float currentTime;
+
     public bool IsTargetFounded => FoundedTarget != null;
     public ITargetable FoundedTarget { get; private set; }
 
@@ -86,5 +86,16 @@ public class TargetSearcher : MonoBehaviour
     protected virtual void TargetFound(ITargetable foundTarget)
     {
         FoundedTarget = foundTarget;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (targetSearcherConfiguration == null)
+        {
+            return;
+        }
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, targetSearcherConfiguration.SearchRadius);
     }
 }

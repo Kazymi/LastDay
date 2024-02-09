@@ -12,7 +12,7 @@ namespace StateMachine
 
         public void Tick()
         {
-            SubMachine.Tick();
+            SubMachine?.Tick();
             var newIndex = IsTransitionsCondition();
             if (newIndex != -1)
             {
@@ -26,7 +26,7 @@ namespace StateMachine
 
         public void FixedTick()
         {
-            SubMachine.FixedTick();
+            SubMachine?.FixedTick();
             CurrentState.FixedTick();
         }
 
