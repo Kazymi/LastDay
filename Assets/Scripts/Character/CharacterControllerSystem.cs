@@ -10,7 +10,7 @@ public class CharacterControllerSystem : MonoBehaviour, IPlayerController
     [SerializeField] private Rigidbody rigidbody;
     [SerializeField] private Joystick joystick;
 
-    private CharacterAnimationController m_animationController;
+    private IPlayerAnimatorController m_animationController;
     private StateMachine.StateMachine m_stateMachine;
     private IPlayerTargetSearcher m_targetSearcher;
 
@@ -18,7 +18,7 @@ public class CharacterControllerSystem : MonoBehaviour, IPlayerController
 
     private void Awake()
     {
-        m_animationController = new CharacterAnimationController(characterAnimator);
+        m_animationController = new PlayerAnimatorController(characterAnimator);
         m_targetSearcher = ServiceLocator.GetService<IPlayerTargetSearcher>();
         OnInit();
     }

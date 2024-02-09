@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterAnimationController
+public class CharacterAnimationController : ICharacterAnimationController
 {
     private readonly Animator m_animator;
     private Dictionary<CharacterAnimationType, int> m_animationHashes = new Dictionary<CharacterAnimationType, int>();
@@ -26,6 +26,7 @@ public class CharacterAnimationController
     {
         m_animator.SetFloat(m_animationHashes[characterAnimationType], value);
     }
+
     public void SetPlay(CharacterAnimationType characterAnimationType, bool isTrigger = false, int layer = 0,
         float time = 0)
     {

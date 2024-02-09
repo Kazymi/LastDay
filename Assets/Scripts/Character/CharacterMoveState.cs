@@ -6,14 +6,15 @@ public class CharacterMoveState : State
     private readonly Rigidbody m_rigidbody;
     private readonly CharacterConfigurations m_characterConfigurations;
     private readonly Joystick m_joystick;
-    private readonly CharacterAnimationController m_characterAnimationController;
+    private readonly IPlayerAnimatorController m_characterAnimationController;
+    private readonly Transform characterBody;
     private IPlayerTargetSearcher m_targetSearcher;
 
     private float needRotate = 0;
     private float currentRotate = 0;
 
     public CharacterMoveState(Rigidbody rigidbody, CharacterConfigurations characterConfigurations, Joystick joystick,
-        CharacterAnimationController
+        IPlayerAnimatorController
             characterAnimationController, Transform characterBody)
     {
         m_targetSearcher = ServiceLocator.GetService<IPlayerTargetSearcher>();
@@ -21,6 +22,7 @@ public class CharacterMoveState : State
         m_characterConfigurations = characterConfigurations;
         m_joystick = joystick;
         m_characterAnimationController = characterAnimationController;
+        this.characterBody = characterBody;
     }
 
     public override void Tick()
@@ -51,6 +53,7 @@ public class CharacterMoveState : State
             currentRotate += Time.deltaTime;
             if (currentRotate > needRotate) currentRotate = needRotate;
         }
+
         m_characterAnimationController.SetFloat(CharacterAnimationType.LegsMove, currentRotate);
     }
 
@@ -91,6 +94,22 @@ public class CharacterMoveState : State
         if (isLeft)
         {
             rotate = 0.7f;
+        }
+
+        if (characterBody.forward.z > 1)
+        {
+            if (isBack || isForward)
+            {
+                rotate = -rotate;
+            }
+        }
+
+        if (characterBody.forward.y > 1)
+        {
+            if (isLeft || isRight)
+            {
+                rotate = -rotate;
+            }
         }
 
         needRotate = rotate;

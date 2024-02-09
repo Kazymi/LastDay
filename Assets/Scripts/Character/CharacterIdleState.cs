@@ -2,9 +2,9 @@ using StateMachine;
 
 public class CharacterIdleState : State
 {
-    private readonly CharacterAnimationController m_characterAnimationController;
+    private readonly IPlayerAnimatorController m_characterAnimationController;
 
-    public CharacterIdleState(CharacterAnimationController characterAnimationController)
+    public CharacterIdleState(IPlayerAnimatorController characterAnimationController)
     {
         m_characterAnimationController = characterAnimationController;
     }

@@ -2,5 +2,8 @@ public enum CharacterAnimationType
 {
     Idle,
     Walk,
-    LegsMove
+    LegsMove,
+    Weapon,
+    IsTargetInZone,
+    Shot
 }
