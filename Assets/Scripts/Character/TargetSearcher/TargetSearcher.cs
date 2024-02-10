@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class TargetSearcher : MonoBehaviour
+public class TargetSearcher : MonoBehaviour, ITargetSearcher
 {
     [SerializeField] private TargetSearcherConfiguration targetSearcherConfiguration;
 
@@ -98,4 +98,10 @@ public class TargetSearcher : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, targetSearcherConfiguration.SearchRadius);
     }
+}
+
+public interface ITargetSearcher
+{
+    bool IsTargetFounded { get; }
+    ITargetable FoundedTarget { get; }
 }

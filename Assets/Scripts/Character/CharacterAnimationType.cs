@@ -5,5 +5,7 @@ public enum CharacterAnimationType
     LegsMove,
     Weapon,
     IsTargetInZone,
-    Shot
+    Shot,
+    WakeUP,
+    ZombieAttack,
 }

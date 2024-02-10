@@ -6,9 +6,12 @@ using UnityEngine;
 
 public class WeaponMain : MonoBehaviour
 {
+    [SerializeField] private bool readyToShot;
     [SerializeField] private WeaponConfiguration weaponConfiguration;
 
     private bool isCanBeShot;
+    private bool CanBeShot => isCanBeShot && readyToShot;
+
     private float shotCooldown;
 
     private IPlayerTargetSearcher targetSearcher;
@@ -25,11 +28,13 @@ public class WeaponMain : MonoBehaviour
         Tick();
         ShotCooldown();
         ReadyShotCheck();
+
+        readyToShot = Input.GetKey(KeyCode.LeftShift);
     }
 
     private void ReadyShotCheck()
     {
-        animatorController.SetBool(CharacterAnimationType.IsTargetInZone, isCanBeShot);
+        animatorController.SetBool(CharacterAnimationType.IsTargetInZone, CanBeShot);
     }
 
     private void OnInit()
@@ -41,7 +46,7 @@ public class WeaponMain : MonoBehaviour
 
     private void ShotCooldown()
     {
-        if (isCanBeShot == false)
+        if (CanBeShot == false)
         {
             return;
         }

@@ -1,5 +1,4 @@
-﻿public interface IPlayerTargetSearcher
+﻿public interface IPlayerTargetSearcher : ITargetSearcher
 {
-    bool IsTargetFounded { get; }
-    ITargetable FoundedTarget { get; }
+
 }
