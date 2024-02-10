@@ -71,46 +71,31 @@ public class CharacterMoveState : State
     private void LegRotate()
     {
         var rotate = 0f;
-        var isRight = m_joystick.Direction.x > 0.1;
-        var isLeft = m_joystick.Direction.x < -0.1;
-        var isForward = m_joystick.Direction.y > 0.1f;
-        var isBack = m_joystick.Direction.y < -0.1f;
+        var isRight = m_joystick.Direction.x > 0.2;
+        var isLeft = m_joystick.Direction.x < -0.2;
+        var isForward = m_joystick.Direction.y > 0.2f;
+        var isBack = m_joystick.Direction.y < -0.2f;
 
         if (isForward)
         {
-            rotate = 0;
+            rotate = characterBody.transform.forward.z > 0 ? 0 : 0.4f; 
         }
 
         if (isBack)
         {
-            rotate = 0.4f;
+            rotate =  characterBody.transform.forward.z > 0 ? 0.4f : 0; 
         }
 
         if (isRight)
         {
-            rotate = 1;
+            rotate = characterBody.transform.forward.z > 0 ? 1 : 0.7f; 
         }
 
         if (isLeft)
         {
-            rotate = 0.7f;
+            rotate =  characterBody.transform.forward.z > 0 ?  0.7f : 1f; 
         }
-
-        if (characterBody.forward.z > 1)
-        {
-            if (isBack || isForward)
-            {
-                rotate = -rotate;
-            }
-        }
-
-        if (characterBody.forward.y > 1)
-        {
-            if (isLeft || isRight)
-            {
-                rotate = -rotate;
-            }
-        }
+        
 
         needRotate = rotate;
     }

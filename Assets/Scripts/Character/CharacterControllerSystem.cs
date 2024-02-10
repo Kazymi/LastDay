@@ -19,6 +19,10 @@ public class CharacterControllerSystem : MonoBehaviour, IPlayerController
     private void Awake()
     {
         m_animationController = new PlayerAnimatorController(characterAnimator);
+    }
+
+    private void Start()
+    {
         m_targetSearcher = ServiceLocator.GetService<IPlayerTargetSearcher>();
         OnInit();
     }

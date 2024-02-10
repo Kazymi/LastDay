@@ -60,6 +60,9 @@ public class WeaponMain : MonoBehaviour
     private void Shoot()
     {
         animatorController.SetPlay(CharacterAnimationType.Shot, false, 2);
+        var damageTaker = targetSearcher.FoundedTarget.target.GetComponent<IDamageTaker>();
+        damageTaker?.TakeDamage(weaponConfiguration.Damage);
+
         Shoted?.Invoke();
     }
 

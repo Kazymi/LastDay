@@ -4,6 +4,7 @@ using UnityEngine;
 public enum EffectType
 {
     ARShootEffect,
+    Blood,
 }
 
 [Serializable]
