@@ -13,6 +13,7 @@ public class DamageTaker : MonoBehaviour, IDamageTaker
             TestDamage = false;
         }
     }
+
     public event Action<float> DamageTaked;
 
     public void TakeDamage(float damage)

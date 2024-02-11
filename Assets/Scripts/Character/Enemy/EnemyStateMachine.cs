@@ -9,6 +9,7 @@ using StateMachine = StateMachine.StateMachine;
 [RequireComponent(typeof(NavMeshAgent), typeof(TargetSearcher))]
 public class EnemyStateMachine : MonoBehaviour
 {
+    [SerializeField] private ZombieHealthController zombieombieHealthController;
     [SerializeField] private Animator animator;
     [SerializeField] private EnemyConfiguration enemyConfiguration;
 
@@ -20,6 +21,21 @@ public class EnemyStateMachine : MonoBehaviour
     private void Start()
     {
         OnInit();
+    }
+
+    private void OnEnable()
+    {
+        zombieombieHealthController.HealthEmpty += ZombieDead;
+    }
+
+    private void OnDisable()
+    {
+        zombieombieHealthController.HealthEmpty -= ZombieDead;
+    }
+
+    private void ZombieDead()
+    {
+        stateMachine.SetState(new State());
     }
 
     private void OnInit()

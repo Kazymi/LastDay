@@ -78,7 +78,7 @@ public class CharacterMoveState : State
 
         if (isForward)
         {
-            rotate = characterBody.transform.forward.z > 0 ? 0 : 0.4f; 
+            rotate = characterBody.transform.forward.z > 0 ? 0 : 0.4f;
         }
 
         if (isBack)

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterControllerSystem : MonoBehaviour, IPlayerController
 {
+  
     [SerializeField] private Transform characterBody;
     [SerializeField] private Animator characterAnimator;
     [SerializeField] private CharacterConfigurations characterConfigurations;
@@ -15,6 +16,8 @@ public class CharacterControllerSystem : MonoBehaviour, IPlayerController
     private IPlayerTargetSearcher m_targetSearcher;
 
     public Vector3 PlayerPosition => transform.position;
+    public Vector3 ForwardPosition => characterBody.forward;
+    public Quaternion BodyRotate => characterBody.rotation;
 
     private void Awake()
     {

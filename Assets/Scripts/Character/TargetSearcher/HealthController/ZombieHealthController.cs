@@ -7,12 +7,16 @@ public class ZombieHealthController : HealthController
     [SerializeField] private HealthHitChance headHitParameters;
     [SerializeField] private HealthHitChance bodyHitParameters;
     [SerializeField] private HealthHitChance armHitParameters;
+    [SerializeField] private SearchTarget searchTarget;
 
     private IPlayerController playerController;
     private IEffectSpawner effectSpawner;
+    private IDamagePopupSpawner popupSpawner;
+
 
     private void Start()
     {
+        popupSpawner = ServiceLocator.GetService<IDamagePopupSpawner>();
         playerController = ServiceLocator.GetService<IPlayerController>();
         effectSpawner = ServiceLocator.GetService<IEffectSpawner>();
     }
@@ -23,17 +27,39 @@ public class ZombieHealthController : HealthController
         var randomHit = Random.Range(0, chanceMax);
         if (headHitParameters.Chance >= randomHit)
         {
+            popupSpawner.SpawnDamagePoput(transform.position,
+                damage * headHitParameters.HealthHitConfiguration.DamageModificator, true);
             TakeHit(headHitParameters, damage);
             return;
         }
 
         if (bodyHitParameters.Chance >= randomHit)
         {
+            StepBack();
+            popupSpawner.SpawnDamagePoput(transform.position,
+                damage * bodyHitParameters.HealthHitConfiguration.DamageModificator, false);
             TakeHit(bodyHitParameters, damage);
             return;
         }
 
+        popupSpawner.SpawnDamagePoput(transform.position,
+            damage * armHitParameters.HealthHitConfiguration.DamageModificator, false);
         TakeHit(armHitParameters, damage);
+    }
+
+    protected override void Dead()
+    {
+        base.Dead();
+        searchTarget.IsTargetAlive = false;
+    }
+
+    private void StepBack()
+    {
+        var stranght = 0.1f;
+        var movepos = playerController.PlayerPosition - transform.position;
+        movepos = movepos.normalized;
+        movepos *= stranght;
+        transform.DOMove(transform.position - movepos, 0.1f);
     }
 
     private void TakeHit(HealthHitChance healthHitChance, float damage)
@@ -42,7 +68,8 @@ public class ZombieHealthController : HealthController
         if (healthHitChance.IsAnimated == false)
         {
             var hitModificator = 1;
-            var takeAxys = healthHitChance.HealthHitConfiguration.HitObject[key].position - playerController.PlayerPosition;
+            var takeAxys = healthHitChance.HealthHitConfiguration.HitObject[key].position -
+                           playerController.PlayerPosition;
             var animateObject = healthHitChance.HealthHitConfiguration.HitObject[key];
             var startRotate = animateObject.localRotation;
 
@@ -61,7 +88,7 @@ public class ZombieHealthController : HealthController
     private IEnumerator CooldownAnimate(HealthHitChance healthHitChance)
     {
         healthHitChance.IsAnimated = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         healthHitChance.IsAnimated = false;
     }
 }
