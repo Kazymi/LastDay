@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AR
   m_EditorClassIdentifier: 
   <FireRate>k__BackingField: 0.2
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 4
   <BulletType>k__BackingField: 0

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a54367fca2524c44b7f233d600de716, type: 3}
+  m_Name: 10
+  m_EditorClassIdentifier: 
+  <LevelConfigurations>k__BackingField:
+  - <enemyPrefabs>k__BackingField:
+    - {fileID: 7918778257067757436, guid: 9b6241e544fe6b04392d9c5ed8990f52, type: 3}
+    - {fileID: 7918778257067757436, guid: 5c42b778352fabc48be2524ba8f28071, type: 3}
+    <amountEnemy>k__BackingField: 100
+  <spawnInterval>k__BackingField: 0.4

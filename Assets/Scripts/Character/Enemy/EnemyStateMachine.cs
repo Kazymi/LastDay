@@ -20,6 +20,8 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void Start()
     {
+        var scaleRandom = Random.Range(0.8f, 1.1f);
+        transform.localScale = new Vector3(scaleRandom, scaleRandom, scaleRandom);
         OnInit();
     }
 
@@ -35,6 +37,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void ZombieDead()
     {
+        SaveData.Instance.Wallet.AddMoney(enemyConfiguration.AddMoney);
         stateMachine.SetState(new State());
     }
 

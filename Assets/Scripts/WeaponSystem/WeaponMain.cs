@@ -1,22 +1,27 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponMain : MonoBehaviour
 {
     [SerializeField] private bool readyToShot;
-    [SerializeField] private WeaponConfiguration weaponConfiguration;
+    private WeaponConfiguration weaponConfiguration;
 
     private bool isCanBeShot;
-    private bool CanBeShot => isCanBeShot && readyToShot;
+    public bool CanBeShot => isCanBeShot && readyToShot;
 
     private float shotCooldown;
 
+    private IBulletSpawner bulletSpawner;
     private IPlayerTargetSearcher targetSearcher;
     private IPlayerAnimatorController animatorController;
     public event Action Shoted;
+
+    public void Initialize(WeaponConfiguration weaponConfiguration)
+    {
+        this.weaponConfiguration = weaponConfiguration;
+    }
 
     private void Start()
     {
@@ -40,6 +45,7 @@ public class WeaponMain : MonoBehaviour
     private void OnInit()
     {
         targetSearcher = ServiceLocator.GetService<IPlayerTargetSearcher>();
+        bulletSpawner = ServiceLocator.GetService<IBulletSpawner>();
         animatorController = ServiceLocator.GetService<IPlayerAnimatorController>();
         animatorController.SetBool(CharacterAnimationType.Weapon, true);
     }
@@ -65,9 +71,7 @@ public class WeaponMain : MonoBehaviour
     private void Shoot()
     {
         animatorController.SetPlay(CharacterAnimationType.Shot, false, 2);
-        var damageTaker = targetSearcher.FoundedTarget.target.GetComponent<IDamageTaker>();
-        damageTaker?.TakeDamage(weaponConfiguration.Damage);
-
+        bulletSpawner.SpawnBullet(weaponConfiguration.BulletType, weaponConfiguration.Damage);
         Shoted?.Invoke();
     }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TargetSearcherConfiguration
   m_EditorClassIdentifier: 
   <SearchRadius>k__BackingField: 7.01
-  <SearchCooldown>k__BackingField: 0.2
+  <SearchCooldown>k__BackingField: 0
   <SearchMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 128

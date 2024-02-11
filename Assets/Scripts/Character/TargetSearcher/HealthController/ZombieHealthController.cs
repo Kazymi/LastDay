@@ -13,6 +13,8 @@ public class ZombieHealthController : HealthController
     private IEffectSpawner effectSpawner;
     private IDamagePopupSpawner popupSpawner;
 
+    private bool isCanBespawenBlood = true;
+    private bool isAlive = true;
 
     private void Start()
     {
@@ -50,6 +52,12 @@ public class ZombieHealthController : HealthController
     protected override void Dead()
     {
         base.Dead();
+        if (isAlive)
+        {
+            isAlive = false;
+            ServiceLocator.GetService<ILevelSystem>().DeadZombie++;
+        }
+
         searchTarget.IsTargetAlive = false;
     }
 
@@ -80,9 +88,21 @@ public class ZombieHealthController : HealthController
             StartCoroutine(CooldownAnimate(healthHitChance));
         }
 
-        effectSpawner.SpawnEffect(healthHitChance.HealthHitConfiguration.HitEffect,
-            healthHitChance.HealthHitConfiguration.HitPosition[key]);
+        if (isCanBespawenBlood)
+        {
+            effectSpawner.SpawnEffect(healthHitChance.HealthHitConfiguration.HitEffect,
+                healthHitChance.HealthHitConfiguration.HitPosition[key]);
+            StartCoroutine(SpawnEffect());
+        }
+
         base.DamageReceived(damage * healthHitChance.HealthHitConfiguration.DamageModificator);
+    }
+
+    private IEnumerator SpawnEffect()
+    {
+        isCanBespawenBlood = false;
+        yield return new  WaitForSeconds(0.1f);
+        isCanBespawenBlood = true;
     }
 
     private IEnumerator CooldownAnimate(HealthHitChance healthHitChance)

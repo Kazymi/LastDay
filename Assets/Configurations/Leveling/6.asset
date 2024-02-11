@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a54367fca2524c44b7f233d600de716, type: 3}
+  m_Name: 6
+  m_EditorClassIdentifier: 
+  <LevelConfigurations>k__BackingField:
+  - <enemyPrefabs>k__BackingField:
+    - {fileID: 7918778257067757436, guid: c98460806ccfc80429523620183d501c, type: 3}
+    - {fileID: 7918778257067757436, guid: 85adb615dfc6bb74d9defad83d60973c, type: 3}
+    - {fileID: 7918778257067757436, guid: 319f1c97fd72154468b7aafc9dd7dfef, type: 3}
+    - {fileID: 7918778257067757436, guid: c5424a4b454ea3a439aa82d9abed08bc, type: 3}
+    <amountEnemy>k__BackingField: 20
+  - <enemyPrefabs>k__BackingField:
+    - {fileID: 7918778257067757436, guid: 9083ec02258298449829fe3057164b96, type: 3}
+    - {fileID: 7918778257067757436, guid: 1fa14ee5f5f3bf44c85d2d917e3cd2c0, type: 3}
+    <amountEnemy>k__BackingField: 10
+  - <enemyPrefabs>k__BackingField:
+    - {fileID: 7918778257067757436, guid: 9b6241e544fe6b04392d9c5ed8990f52, type: 3}
+    - {fileID: 7918778257067757436, guid: 5c42b778352fabc48be2524ba8f28071, type: 3}
+    <amountEnemy>k__BackingField: 4
+  <spawnInterval>k__BackingField: 0.4

@@ -47,7 +47,7 @@ public class RagdollController : MonoBehaviour
     {
         yield return new WaitForSeconds(25);
         SetRigidBody(true);
-        parentCollider.transform.DOMove(parentCollider.transform.position - Vector3.down * 3, 2f);
+        parentCollider.transform.DOMove(parentCollider.transform.position + Vector3.down * 3, 2f);
         Destroy(parentCollider.gameObject, 2f);
     }
 

@@ -42,7 +42,7 @@ public class DamagePopup : MonoBehaviour
 
     public void Setup(int damage, Color color, bool isCrit)
     {
-        moveVector = new Vector3(.4f, 1f) * 3;
+        moveVector = new Vector3(Random.Range(-.4f,.4f), 1f) * 3;
         dessapiar = 1;
         text.color = color;
         textColor = text.color;
