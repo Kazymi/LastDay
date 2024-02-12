@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class WeaponMain : MonoBehaviour
+public class WeaponMain : MonoBehaviour, IWeaponMain
 {
     [SerializeField] private PlayerHealthBase playerHealthBase;
     [SerializeField] private bool readyToShot;
@@ -15,11 +15,17 @@ public class WeaponMain : MonoBehaviour
     private IBulletSpawner bulletSpawner;
     private IPlayerTargetSearcher targetSearcher;
     private IPlayerAnimatorController animatorController;
+    public WeaponConfiguration WeaponConfiguration => weaponConfiguration;
     public event Action Shoted;
 
-    public void Initialize(WeaponConfiguration weaponConfiguration)
+    private void OnEnable()
     {
-        this.weaponConfiguration = weaponConfiguration;
+        ServiceLocator.Subscribe<IWeaponMain>(this);
+    }
+
+    private void OnDisable()
+    {
+        ServiceLocator.Unsubscribe<IWeaponMain>();
     }
 
     private void Start()
@@ -33,6 +39,11 @@ public class WeaponMain : MonoBehaviour
         Tick();
         ShotCooldown();
         ReadyShotCheck();
+    }
+
+    public void Initialize(WeaponConfiguration weaponConfiguration)
+    {
+        this.weaponConfiguration = weaponConfiguration;
     }
 
     private void ReadyShotCheck()
@@ -79,4 +90,9 @@ public class WeaponMain : MonoBehaviour
         isCanBeShot = targetSearcher.IsTargetFounded;
         if (first != isCanBeShot) shotCooldown = weaponConfiguration.FireRate;
     }
+}
+
+public interface IWeaponMain
+{
+    WeaponConfiguration WeaponConfiguration { get; }
 }
