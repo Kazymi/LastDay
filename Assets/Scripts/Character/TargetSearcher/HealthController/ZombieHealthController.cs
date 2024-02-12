@@ -95,13 +95,15 @@ public class ZombieHealthController : HealthController
             StartCoroutine(SpawnEffect());
         }
 
-        base.DamageReceived(damage * healthHitChance.HealthHitConfiguration.DamageModificator);
+        var damageFix = damage * healthHitChance.HealthHitConfiguration.DamageModificator;
+        if (damageFix <= 0) damageFix = 1;
+        base.DamageReceived(damageFix);
     }
 
     private IEnumerator SpawnEffect()
     {
         isCanBespawenBlood = false;
-        yield return new  WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.1f);
         isCanBespawenBlood = true;
     }
 

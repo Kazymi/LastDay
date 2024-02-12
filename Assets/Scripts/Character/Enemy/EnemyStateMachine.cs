@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using StateMachine;
 using StateMachine.Conditions;
 using UnityEngine;
 using UnityEngine.AI;
-using StateMachine = StateMachine.StateMachine;
 
 [RequireComponent(typeof(NavMeshAgent), typeof(TargetSearcher))]
 public class EnemyStateMachine : MonoBehaviour

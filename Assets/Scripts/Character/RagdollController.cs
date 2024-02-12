@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -65,6 +64,7 @@ public class RagdollController : MonoBehaviour
     {
         foreach (var ragDollObject in ragDollObjects)
         {
+            
             ragDollObject.isKinematic = value;
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterControllerSystem : MonoBehaviour, IPlayerController
 {
-  
+    [SerializeField] private PlayerHealthBase playerHealth;
     [SerializeField] private Transform characterBody;
     [SerializeField] private Animator characterAnimator;
     [SerializeField] private CharacterConfigurations characterConfigurations;
@@ -32,12 +32,22 @@ public class CharacterControllerSystem : MonoBehaviour, IPlayerController
 
     private void OnEnable()
     {
+        ServiceLocator.Subscribe<IPlayerAnimatorController>(m_animationController);
         ServiceLocator.Subscribe<IPlayerController>(this);
+        playerHealth.HealthEmpty += PlayerDead;
     }
 
     private void OnDisable()
     {
+        ServiceLocator.Unsubscribe<IPlayerAnimatorController>();
         ServiceLocator.Unsubscribe<IPlayerController>();
+        playerHealth.HealthEmpty -= PlayerDead;
+    }
+
+    private void PlayerDead()
+    {
+        m_stateMachine.SetState(new State());
+        m_stateMachine.CreateSubMachine(new State());
     }
 
     private void OnInit()

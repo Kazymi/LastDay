@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponMain : MonoBehaviour
 {
+    [SerializeField] private PlayerHealthBase playerHealthBase;
     [SerializeField] private bool readyToShot;
     private WeaponConfiguration weaponConfiguration;
 
@@ -25,6 +24,7 @@ public class WeaponMain : MonoBehaviour
 
     private void Start()
     {
+        playerHealthBase.HealthEmpty += () => readyToShot = false;
         OnInit();
     }
 
@@ -33,8 +33,6 @@ public class WeaponMain : MonoBehaviour
         Tick();
         ShotCooldown();
         ReadyShotCheck();
-
-        readyToShot = Input.GetKey(KeyCode.LeftShift);
     }
 
     private void ReadyShotCheck()

@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -18,6 +17,7 @@ public class LevelSystem : MonoBehaviour, ILevelSystem
 
     private void Start()
     {
+        SaveData.Instance.CurrentLevel = 0;
         zombieSpawner = ServiceLocator.GetService<IZombieSpawner>();
         Initialize();
     }

@@ -4,6 +4,6 @@ public class PlayerAnimatorController : CharacterAnimationController, IPlayerAni
 {
     public PlayerAnimatorController(Animator animator) : base(animator)
     {
-        ServiceLocator.Subscribe<IPlayerAnimatorController>(this);
+ 
     }
 }
