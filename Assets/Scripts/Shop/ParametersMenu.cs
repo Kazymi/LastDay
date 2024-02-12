@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ParametersMenu : MonoBehaviour
 {
+    [SerializeField] private Image fadeImage;
     [SerializeField] private GameObject weaponContainer;
     [SerializeField] private GameObject shopPanel;
     [SerializeField] private GameObject updatePanel;
@@ -32,6 +33,7 @@ public class ParametersMenu : MonoBehaviour
 
     private void ShowParameters()
     {
+        fadeImage.DOFade(0.96f, 0.3f);
         weaponContainer.gameObject.SetActive(true);
         weaponContainer.transform.DOKill();
         weaponContainer.transform.localScale = Vector3.zero;
@@ -47,6 +49,7 @@ public class ParametersMenu : MonoBehaviour
 
     private void Close()
     {
+        fadeImage.DOFade(0, 0.3f);
         weaponContainer.gameObject.SetActive(false);
         shopPanel.gameObject.SetActive(true);
         updatePanel.gameObject.SetActive(false);
