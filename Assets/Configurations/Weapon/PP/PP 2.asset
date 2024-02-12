@@ -15,4 +15,4 @@ MonoBehaviour:
   <FireRate>k__BackingField: 0.2
   <Damage>k__BackingField: 2
   <BulletType>k__BackingField: 0
-  <CritChans>k__BackingField: 7
+  <CritChans>k__BackingField: 4
