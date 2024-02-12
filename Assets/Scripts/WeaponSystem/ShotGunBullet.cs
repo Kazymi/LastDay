@@ -8,7 +8,8 @@ public class ShotGunBullet : Bullet
         var target = ServiceLocator.GetService<IPlayerTargetSearcher>().FoundedTarget.target;
         var damageTaker = target.GetComponent<IDamageTaker>();
         damageTaker?.TakeDamage(damage);
-        LayerMask layerMask = 7;
+        LayerMask layerMask = new LayerMask();
+        layerMask.value = 128;
         var targetable = Physics.OverlapSphere(target.position, 2,layerMask).Where(t => t.GetComponent<IDamageTaker>() != null)
             .ToList();
         for (int i = 0; i < 6; i++)

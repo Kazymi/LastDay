@@ -44,10 +44,12 @@ public class RagdollController : MonoBehaviour
 
     private IEnumerator Dead()
     {
+        transform.parent = null;
         yield return new WaitForSeconds(25);
         SetRigidBody(true);
-        parentCollider.transform.DOMove(parentCollider.transform.position + Vector3.down * 3, 2f);
-        Destroy(parentCollider.gameObject, 2f);
+        transform.DOMove(parentCollider.transform.position + Vector3.down * 3, 6f);
+        Destroy(parentCollider.gameObject, 6f);
+        Destroy(gameObject, 6f);
     }
 
     private void AddForce()
@@ -64,9 +66,7 @@ public class RagdollController : MonoBehaviour
     {
         foreach (var ragDollObject in ragDollObjects)
         {
-            
             ragDollObject.isKinematic = value;
         }
     }
 }
-

@@ -90,7 +90,7 @@ public class ZombieHealthController : HealthController
         }
 
         var damageFix = damage * healthHitChance.HealthHitConfiguration.DamageModificator;
-        if (damageFix <= 0) damageFix = 1;
+        if (damageFix <= 1) damageFix = 1;
         popupSpawner.SpawnDamagePoput(transform.position, damageFix, isCrit);
         base.DamageReceived(damageFix);
     }
