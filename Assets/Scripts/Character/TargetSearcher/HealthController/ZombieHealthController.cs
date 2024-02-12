@@ -29,24 +29,18 @@ public class ZombieHealthController : HealthController
         var randomHit = Random.Range(0, chanceMax);
         if (headHitParameters.Chance >= randomHit)
         {
-            popupSpawner.SpawnDamagePoput(transform.position,
-                damage * headHitParameters.HealthHitConfiguration.DamageModificator, true);
-            TakeHit(headHitParameters, damage);
+            TakeHit(headHitParameters, damage, true);
             return;
         }
 
         if (bodyHitParameters.Chance >= randomHit)
         {
             StepBack();
-            popupSpawner.SpawnDamagePoput(transform.position,
-                damage * bodyHitParameters.HealthHitConfiguration.DamageModificator, false);
-            TakeHit(bodyHitParameters, damage);
+            TakeHit(bodyHitParameters, damage, false);
             return;
         }
 
-        popupSpawner.SpawnDamagePoput(transform.position,
-            damage * armHitParameters.HealthHitConfiguration.DamageModificator, false);
-        TakeHit(armHitParameters, damage);
+        TakeHit(armHitParameters, damage, false);
     }
 
     protected override void Dead()
@@ -70,7 +64,7 @@ public class ZombieHealthController : HealthController
         transform.DOMove(transform.position - movepos, 0.1f);
     }
 
-    private void TakeHit(HealthHitChance healthHitChance, float damage)
+    private void TakeHit(HealthHitChance healthHitChance, float damage, bool isCrit)
     {
         var key = Random.Range(0, healthHitChance.HealthHitConfiguration.HitObject.Length);
         if (healthHitChance.IsAnimated == false)
@@ -96,7 +90,8 @@ public class ZombieHealthController : HealthController
         }
 
         var damageFix = damage * healthHitChance.HealthHitConfiguration.DamageModificator;
-        if (damageFix <= 0) damageFix = 1;
+        if (damageFix >= 0) damageFix = 1;
+        popupSpawner.SpawnDamagePoput(transform.position, damageFix, isCrit);
         base.DamageReceived(damageFix);
     }
 
