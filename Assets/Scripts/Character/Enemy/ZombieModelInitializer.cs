@@ -14,6 +14,7 @@ public class ZombieModelInitializer : MonoBehaviour
     private void Awake()
     {
         ModelActivate();
+        CustomInitalize();
     }
 
     private void OnEnable()
@@ -30,12 +31,16 @@ public class ZombieModelInitializer : MonoBehaviour
     {
         if (weapon != null)
         {
+            weapon.transform.parent = null;
             weapon.GetComponent<Rigidbody>().isKinematic = false;
+            Destroy(weapon,25);
         }
 
         if (backPack != null)
         {
             backPack.GetComponent<Rigidbody>().isKinematic = false;
+            backPack.transform.parent = null;
+            Destroy(backPack,25);
         }
     }
 

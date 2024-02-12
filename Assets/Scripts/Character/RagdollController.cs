@@ -66,7 +66,10 @@ public class RagdollController : MonoBehaviour
     {
         foreach (var ragDollObject in ragDollObjects)
         {
-            ragDollObject.isKinematic = value;
+            if (ragDollObject != null)
+            {
+                ragDollObject.isKinematic = value;
+            }
         }
     }
 }

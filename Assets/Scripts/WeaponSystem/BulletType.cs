@@ -2,4 +2,5 @@
 {
     ARBullets,
     ShootGun,
+    Granade,
 }
