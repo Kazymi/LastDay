@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class LevelSystem : MonoBehaviour, ILevelSystem
 {
+    [SerializeField] private TMP_Text levelText;
     [SerializeField] private int prepareTime;
     [SerializeField] private LevelSystemUI levelSystemUi;
 
@@ -71,7 +72,7 @@ public class LevelSystem : MonoBehaviour, ILevelSystem
         zombieSpawner.SpawnZombie();
         DeadZombie = 0;
         AmountZombie = zombieSpawner.CurrentZombieAmount;
-
+        levelText.text = "Lvl" + (SaveData.Instance.CurrentLevel + 1).ToString();
         levelSystemUi.sliderObject.gameObject.SetActive(true);
         levelSystemUi.readyText.gameObject.SetActive(false);
     }

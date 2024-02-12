@@ -99,7 +99,7 @@ Material:
     - _ZWrite: 0
     - __dirty: 0
     m_Colors:
-    - _BloodColor: {r: 0.30882353, g: 0.10218426, b: 0.10218426, a: 0}
+    - _BloodColor: {r: 0.15095055, g: 0.33962262, b: 0.14578141, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColor: {r: 0.5955882, g: 0.5855611, b: 0.23210424, a: 0}

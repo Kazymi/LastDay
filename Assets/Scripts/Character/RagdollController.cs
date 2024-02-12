@@ -10,6 +10,10 @@ public class RagdollController : MonoBehaviour
 
     private Rigidbody[] ragDollObjects;
     private Animator animator;
+    private BodyCenter bodyCenter;
+
+
+    private Vector3 startPosition;
 
     private void Awake()
     {
@@ -44,12 +48,10 @@ public class RagdollController : MonoBehaviour
 
     private IEnumerator Dead()
     {
-        transform.parent = null;
         yield return new WaitForSeconds(25);
         SetRigidBody(true);
-        transform.DOMove(parentCollider.transform.position + Vector3.down * 3, 6f);
+        parentCollider.transform.DOMove(parentCollider.transform.position + Vector3.down * 3, 6f);
         Destroy(parentCollider.gameObject, 6f);
-        Destroy(gameObject, 6f);
     }
 
     private void AddForce()

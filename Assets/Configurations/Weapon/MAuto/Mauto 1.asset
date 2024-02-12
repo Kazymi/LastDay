@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5536b46b87ef42346b75fdf1e1ec2eb0, type: 3}
   m_Name: Mauto 1
   m_EditorClassIdentifier: 
-  <FireRate>k__BackingField: 0.2
-  <Damage>k__BackingField: 4
-  <BulletType>k__BackingField: 0
+  <FireRate>k__BackingField: 0.1
+  <Damage>k__BackingField: 3
+  <BulletType>k__BackingField: 3
   <CritChans>k__BackingField: 8

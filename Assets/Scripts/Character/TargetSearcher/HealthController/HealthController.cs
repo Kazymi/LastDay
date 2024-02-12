@@ -8,6 +8,9 @@ public class HealthController : MonoBehaviour
 
     private float currentHealth;
 
+    public float currentDamagePerce => currentHealth / healthConfiguration.Health;
+    public bool isDead;
+
     public event Action HealthEmpty;
 
     private void Awake()
@@ -41,6 +44,7 @@ public class HealthController : MonoBehaviour
 
     protected virtual void Dead()
     {
+        isDead = true;
         HealthEmpty?.Invoke();
     }
 }

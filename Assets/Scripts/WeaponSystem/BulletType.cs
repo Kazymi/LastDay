@@ -3,4 +3,5 @@
     ARBullets,
     ShootGun,
     Granade,
+    Minigun,
 }

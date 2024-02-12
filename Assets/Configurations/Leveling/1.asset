@@ -19,4 +19,4 @@ MonoBehaviour:
     - {fileID: 7918778257067757436, guid: 319f1c97fd72154468b7aafc9dd7dfef, type: 3}
     - {fileID: 7918778257067757436, guid: c5424a4b454ea3a439aa82d9abed08bc, type: 3}
     <amountEnemy>k__BackingField: 10
-  <spawnInterval>k__BackingField: 0
+  <spawnInterval>k__BackingField: 0.4

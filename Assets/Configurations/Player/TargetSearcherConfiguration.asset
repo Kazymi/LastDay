@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7702842c12c3c42489fcebd2f32907fb, type: 3}
   m_Name: TargetSearcherConfiguration
   m_EditorClassIdentifier: 
-  <SearchRadius>k__BackingField: 7.01
+  <SearchRadius>k__BackingField: 4
   <SearchCooldown>k__BackingField: 0
   <SearchMask>k__BackingField:
     serializedVersion: 2

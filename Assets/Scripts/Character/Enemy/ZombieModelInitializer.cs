@@ -8,6 +8,8 @@ public class ZombieModelInitializer : MonoBehaviour
     [SerializeField] private GameObject[] faces;
     [SerializeField] private GameObject[] backPacks;
 
+    public SkinnedMeshRenderer meshRenderer { get; private set; }
+    
     private GameObject weapon;
     private GameObject backPack;
 
@@ -51,27 +53,29 @@ public class ZombieModelInitializer : MonoBehaviour
             zombieModel.gameObject.SetActive(false);
         }
 
-        zombieModel[Random.Range(0, zombieModel.Length)].gameObject.SetActive(true);
+        var id = Random.Range(0, zombieModel.Length);
+        zombieModel[id].gameObject.SetActive(true);
+        meshRenderer = zombieModel[id].GetComponent<SkinnedMeshRenderer>();
     }
 
     private void CustomInitalize()
     {
         var ifSpawnWeapon = Random.Range(0, 10) < 3;
-        if (ifSpawnWeapon)
+        if (ifSpawnWeapon && weapons.Length > 0)
         {
             weapon = weapons[Random.Range(0, weapons.Length)];
             weapon.SetActive(true);
         }
 
         var ifSpawnFaces = Random.Range(0, 10) < 6;
-        if (ifSpawnFaces)
+        if (ifSpawnFaces && faces.Length > 0)
         {
             var face = faces[Random.Range(0, faces.Length)];
             face.SetActive(true);
         }
 
         var ifSpawnBackPack = Random.Range(0, 10) < 3;
-        if (ifSpawnBackPack)
+        if (ifSpawnBackPack && backPacks.Length > 0)
         {
             backPack = backPacks[Random.Range(0, backPacks.Length)];
             backPack.gameObject.SetActive(true);

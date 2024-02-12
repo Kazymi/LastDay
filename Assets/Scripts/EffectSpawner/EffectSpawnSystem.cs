@@ -5,6 +5,7 @@ public enum EffectType
 {
     ARShootEffect,
     Blood,
+    ExplosionMini,
 }
 
 [Serializable]

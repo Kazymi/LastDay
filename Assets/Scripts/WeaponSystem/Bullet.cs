@@ -1,3 +1,5 @@
+using UnityEngine.UI;
+
 public abstract class Bullet
 {
     protected float damage;

@@ -39,6 +39,12 @@ public class BulletSpawner : MonoBehaviour, IBulletSpawner
             case BulletType.ShootGun:
                 effects.Add(BulletType.ShootGun, new ShotGunBullet());
                 break;
+            case BulletType.Granade:
+                effects.Add(BulletType.Granade, new GranadeBullet());
+                break;
+            case BulletType.Minigun:
+                effects.Add(BulletType.Minigun, new MiniGunBullet());
+                break;
         }
     }
 }
