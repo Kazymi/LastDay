@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: AR 1
   m_EditorClassIdentifier: 
   <FireRate>k__BackingField: 0.3
-  <Damage>k__BackingField: 3
+  <Damage>k__BackingField: 6
   <BulletType>k__BackingField: 0
   <CritChans>k__BackingField: 5

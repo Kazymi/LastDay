@@ -5932,7 +5932,7 @@ PrefabInstance:
       objectReference: {fileID: 1990965885}
     - target: {fileID: 1258552572240594512, guid: bd4ed1d4677dd4f4caa590e065fbe83b, type: 3}
       propertyPath: weaponType
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1258552572240594512, guid: bd4ed1d4677dd4f4caa590e065fbe83b, type: 3}
       propertyPath: paramentersMenu
@@ -5992,11 +5992,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4678930827766789005, guid: bd4ed1d4677dd4f4caa590e065fbe83b, type: 3}
       propertyPath: price
-      value: 599
+      value: 2999
       objectReference: {fileID: 0}
     - target: {fileID: 4678930827766789005, guid: bd4ed1d4677dd4f4caa590e065fbe83b, type: 3}
       propertyPath: weaponType
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7406791666755107371, guid: bd4ed1d4677dd4f4caa590e065fbe83b, type: 3}
       propertyPath: m_Pivot.x

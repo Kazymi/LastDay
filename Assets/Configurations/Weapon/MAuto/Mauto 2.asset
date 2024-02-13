@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Mauto 2
   m_EditorClassIdentifier: 
   <FireRate>k__BackingField: 0.3
-  <Damage>k__BackingField: 7
+  <Damage>k__BackingField: 12
   <BulletType>k__BackingField: 2
   <CritChans>k__BackingField: 10
