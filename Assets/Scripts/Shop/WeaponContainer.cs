@@ -13,7 +13,11 @@ public class WeaponContainer : MonoBehaviour
 
     private IEnumerator PreInit()
     {
-        yield return new WaitForSeconds(0.1f);
+        if (isShop == false)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
         foreach (var weaponSelector in weaponSelectors)
         {
             weaponSelector.Weapon.gameObject.SetActive(weaponSelector.WeaponType ==

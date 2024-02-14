@@ -25,6 +25,12 @@ public class SaveData : MonoBehaviour
         set => save.CurrentLevel = value;
     }
 
+    public List<AttachmentsSave> AttachList
+    {
+        get => save.AttachmentsSaves;
+        set => save.AttachmentsSaves = value;
+    }
+
     public WeaponType FreeWeapon
     {
         get => save.FreeWeapon;
@@ -41,7 +47,13 @@ public class SaveData : MonoBehaviour
 
     private void Awake()
     {
-        save = Load() ?? new Save();
+        save = Load();
+        if (save == null)
+        {
+            save = new Save();
+            save.Initialize();
+        }
+
         Instance = this;
         Wallet = new Wallet(moneyText, save);
     }
@@ -71,8 +83,27 @@ public class Save
 {
     public int Money;
     public List<WeaponType> BuyWeapon = new List<WeaponType>() {WeaponType.PP};
+    public List<AttachmentsSave> AttachmentsSaves;
     public int CurrentLevel;
 
     public WeaponType FreeWeapon;
     public WeaponType SelectedWeapon = WeaponType.PP;
+
+    public void Initialize()
+    {
+        AttachmentsSaves = new List<AttachmentsSave>();
+        foreach (WeaponType weaponType in Enum.GetValues(typeof(WeaponType)))
+        {
+            AttachmentsSaves.Add(new AttachmentsSave()
+                {WeaponType = weaponType, AttachTypes = new List<AttachType>(), BoughtTypes = new List<AttachType>()});
+        }
+    }
+}
+
+[Serializable]
+public class AttachmentsSave
+{
+    public WeaponType WeaponType;
+    public List<AttachType> AttachTypes;
+    public List<AttachType> BoughtTypes;
 }

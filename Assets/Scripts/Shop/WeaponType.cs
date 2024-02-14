@@ -1,4 +1,6 @@
-﻿public enum WeaponType
+﻿using System;
+
+public enum WeaponType
 {
     Shotgun,
     ShotgunSecond,

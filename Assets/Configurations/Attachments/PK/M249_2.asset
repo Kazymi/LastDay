@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f2499b6c47a4049a49c401fab12a6e, type: 3}
+  m_Name: M249_2
+  m_EditorClassIdentifier: 
+  <AttachType>k__BackingField: 19
+  <Icon>k__BackingField: {fileID: -1045864047, guid: 69a3de8aee47a6e42adb777f5a289690, type: 3}
+  <Price>k__BackingField: 0
+  <attachObject>k__BackingField: {fileID: 1208911835326238, guid: 5e226c9ce57872a4ca9cb8fce08d687e, type: 3}
