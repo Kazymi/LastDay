@@ -27,7 +27,7 @@ public class ZombieHealthController : HealthController
     {
         var chanceMax = 15;
         var randomHit = Random.Range(0, chanceMax);
-        if (ServiceLocator.GetService<IWeaponMain>().WeaponConfiguration.CritChans >= randomHit)
+        if (ServiceLocator.GetService<IWeaponMain>().CritChance >= randomHit)
         {
             TakeHit(headHitParameters, damage, true);
             return;

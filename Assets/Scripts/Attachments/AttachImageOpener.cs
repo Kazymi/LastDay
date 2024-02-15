@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using EventBusSystem;
+using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class AttachImageOpener : MonoBehaviour
+public class AttachImageOpener : MonoBehaviour, IAttachmentUpdate
 {
     [SerializeField] private GameObject[] activateObjects;
 
@@ -17,11 +18,13 @@ public class AttachImageOpener : MonoBehaviour
 
     private void OnEnable()
     {
+        EventBus.Subscribe(this);
         button.onClick.AddListener(OnClick);
     }
 
     private void OnDisable()
     {
+        EventBus.Unsubscribe(this);
         button.onClick.RemoveListener(OnClick);
     }
 
@@ -42,5 +45,10 @@ public class AttachImageOpener : MonoBehaviour
         {
             ServiceLocator.GetService<IAttachment>().EnableAllList();
         }
+    }
+
+    public void AttachmentUpdated()
+    {
+        OnClick();
     }
 }

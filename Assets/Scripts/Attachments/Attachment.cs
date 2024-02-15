@@ -114,7 +114,12 @@ public class Attachment : MonoBehaviour, IAttachment
         newAttachObject.transform.localRotation = Quaternion.identity;
         attachmentList.Center.transform.DOShakeScale(0.2f, 0.3f)
             .OnComplete(() => attachmentList.Center.transform.DOScale(Vector3.one, 0.1f));
-        SaveData.Instance.AttachList.Where(t => t.WeaponType == weaponType).ToList()[0].AttachTypes.Add(attachType);
+        var save = SaveData.Instance.AttachList.Where(t => t.WeaponType == weaponType).ToList()[0];
+        if (save.AttachTypes.Contains(attachType) == false)
+        {
+            save.AttachTypes.Add(attachType);
+        }
+
         SaveData.Instance.Save();
     }
 
@@ -123,12 +128,8 @@ public class Attachment : MonoBehaviour, IAttachment
     {
         if (needClearSave)
         {
-            if (attachList.attachType != AttachType.Default)
-            {
-                attachList.attachType = AttachType.Default;
-                SaveData.Instance.AttachList.Where(t => t.WeaponType == weaponType).ToList()[0].AttachTypes
-                    .Remove(attachList.attachType);
-            }
+            SaveData.Instance.AttachList.Where(t => t.WeaponType == weaponType).ToList()[0].AttachTypes
+                .Remove(attachList.attachType);
         }
 
         var parent = attachList.Center;

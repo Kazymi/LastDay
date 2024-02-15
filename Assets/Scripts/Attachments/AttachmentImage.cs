@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EventBusSystem;
+using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image), typeof(Button))]
@@ -37,6 +38,7 @@ public class AttachmentImage : MonoBehaviour
     {
         attachment = ServiceLocator.GetService<IAttachment>();
         attachment.ConnectAttachment(attachmentList, attachType);
+        EventBus.RaiseEvent<IAttachmentUpdate>(t => t.AttachmentUpdated());
     }
 
     public void Setup(Sprite sprite, AttachType attachType, AttachmentList attachmentList)
@@ -46,6 +48,9 @@ public class AttachmentImage : MonoBehaviour
         image ??= GetComponent<Image>();
         image.sprite = sprite;
         this.attachmentList = attachmentList;
-        attachmentBuyButton.Initialize(this);
+        if (attachmentBuyButton != null)
+        {
+            attachmentBuyButton.Initialize(this);
+        }
     }
 }

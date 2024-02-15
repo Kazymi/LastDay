@@ -16,3 +16,6 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: -1323011289, guid: adaa72de03a128e4a83d740ccf0aaa0c, type: 3}
   <Price>k__BackingField: 0
   <attachObject>k__BackingField: {fileID: 1855910079240562, guid: cd7e6b16221d2654cabad9e213d622bb, type: 3}
+  <AttachParameters>k__BackingField:
+  - <ParametersType>k__BackingField: 1
+    <AddPercent>k__BackingField: 0.1
