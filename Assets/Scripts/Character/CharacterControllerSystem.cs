@@ -18,6 +18,7 @@ public class CharacterControllerSystem : MonoBehaviour, IPlayerController
     public Vector3 PlayerPosition => transform.position;
     public Vector3 ForwardPosition => characterBody.forward;
     public Quaternion BodyRotate => characterBody.rotation;
+    public Transform PlayerTransform => transform;
 
     private void Awake()
     {

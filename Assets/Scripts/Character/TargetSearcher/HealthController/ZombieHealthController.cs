@@ -16,6 +16,8 @@ public class ZombieHealthController : HealthController
     private bool isCanBespawenBlood = true;
     private bool isAlive = true;
 
+    public float CurrentHealthPercent => currentDamagePerce;
+
     private void Start()
     {
         popupSpawner = ServiceLocator.GetService<IDamagePopupSpawner>();

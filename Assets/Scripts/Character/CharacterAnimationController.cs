@@ -22,6 +22,8 @@ public class CharacterAnimationController : ICharacterAnimationController
         m_animator.SetBool(m_animationHashes[characterAnimationType], value);
     }
 
+    public Animator Animator => m_animator;
+
     public void SetFloat(CharacterAnimationType characterAnimationType, float value)
     {
         m_animator.SetFloat(m_animationHashes[characterAnimationType], value);

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AttachType>k__BackingField: 12
   <Icon>k__BackingField: {fileID: 1423871833, guid: adaa72de03a128e4a83d740ccf0aaa0c, type: 3}
-  <Price>k__BackingField: 0
+  <Price>k__BackingField: 125
   <attachObject>k__BackingField: {fileID: 1431629466548562, guid: 34efb923780d7f440a70979cb40886d1, type: 3}
   <AttachParameters>k__BackingField:
   - <ParametersType>k__BackingField: 2

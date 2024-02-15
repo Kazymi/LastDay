@@ -8,4 +8,10 @@ public enum CharacterAnimationType
     Shot,
     WakeUP,
     ZombieAttack,
+    BossAttack,
+    WalkSecond,
+    BossAttackSecond,
+    WakeUpSecond,
+    
+    
 }

@@ -6,14 +6,14 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent), typeof(TargetSearcher))]
 public class EnemyStateMachine : MonoBehaviour
 {
-    [SerializeField] private ZombieHealthController zombieombieHealthController;
-    [SerializeField] private Animator animator;
-    [SerializeField] private EnemyConfiguration enemyConfiguration;
+    [SerializeField] protected ZombieHealthController zombieombieHealthController;
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected EnemyConfiguration enemyConfiguration;
 
-    private TargetSearcher targetSearcher;
-    private NavMeshAgent navMeshAgent;
-    private global::StateMachine.StateMachine stateMachine;
-    private ICharacterAnimationController characterAnimationController;
+    protected TargetSearcher targetSearcher;
+    protected NavMeshAgent navMeshAgent;
+    protected global::StateMachine.StateMachine stateMachine;
+    protected ICharacterAnimationController characterAnimationController;
 
     private void Start()
     {
@@ -49,14 +49,16 @@ public class EnemyStateMachine : MonoBehaviour
     private void Update()
     {
         stateMachine.Tick();
+        Tick();
     }
 
+    protected virtual void Tick(){}
     private void InitializeStateMachine()
     {
         var idleState = new EnemyIdleState(characterAnimationController);
         var wakeUPState = new EnemyWakeUpState(characterAnimationController);
         var moveToTargetState =
-            new EnemyMoveState(characterAnimationController, navMeshAgent, enemyConfiguration, targetSearcher);
+            new EnemyMoveState(characterAnimationController, navMeshAgent, enemyConfiguration.Speed, targetSearcher);
         var attackState = new EnemyAttackState(characterAnimationController, transform, targetSearcher);
 
         attackState.AddTransition(new StateTransition(moveToTargetState,
@@ -74,5 +76,10 @@ public class EnemyStateMachine : MonoBehaviour
             new FuncCondition(() => targetSearcher.IsTargetFounded == false)));
 
         stateMachine = new global::StateMachine.StateMachine(idleState);
+        StateMachineInitialized(idleState, wakeUPState, moveToTargetState, attackState);
+    }
+
+    protected virtual void StateMachineInitialized(State idle, State walkeUp, State moveToTarget, State attackState)
+    {
     }
 }
