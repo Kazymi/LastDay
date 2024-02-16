@@ -17,5 +17,6 @@ public class ShotGunBullet : Bullet
             if (targetable.Count == 0) break;
             targetable[Random.Range(0, targetable.Count)].GetComponent<IDamageTaker>().TakeDamage(damage);
         }
+        ServiceLocator.GetService<ISoundSystem>().PlaySound(SoundType.ShotGun);
     }
 }

@@ -24,5 +24,6 @@ public class GranadeBullet : Bullet
             if(takerDamage == damageTaker) continue;
             takerDamage.TakeDamage(damage/2);
         }
+        ServiceLocator.GetService<ISoundSystem>().PlaySound(SoundType.Explosion);
     }
 }

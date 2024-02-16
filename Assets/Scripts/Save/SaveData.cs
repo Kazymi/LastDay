@@ -19,6 +19,11 @@ public class SaveData : MonoBehaviour
         set => save.BuyWeapon = value;
     }
 
+    public bool isSoundAcivated
+    {
+        get => save.IsSoundAcivated;
+        set => save.IsSoundAcivated = value;
+    }
     public int CurrentLevel
     {
         get => save.CurrentLevel;
@@ -86,6 +91,7 @@ public class Save
     public List<AttachmentsSave> AttachmentsSaves;
     public int CurrentLevel;
 
+    public bool IsSoundAcivated = true;
     public WeaponType FreeWeapon;
     public WeaponType SelectedWeapon = WeaponType.PP;
 

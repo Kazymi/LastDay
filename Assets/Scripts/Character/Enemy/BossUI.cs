@@ -7,11 +7,15 @@ using UnityEngine.UI;
 
 public class BossUI : MonoBehaviour, IBossUI
 {
+    [SerializeField] private AudioClip defaultClip;
+    [SerializeField] private AudioClip bossClip;
+
     [SerializeField] private GameObject sliderPanel;
     [SerializeField] private TMP_Text bossText;
     [SerializeField] private Image bossSlider;
 
     private HealthController healthController;
+    private ISoundSystem soundSystem;
 
     private void OnEnable()
     {
@@ -31,6 +35,11 @@ public class BossUI : MonoBehaviour, IBossUI
 
     private IEnumerator HealthbarController()
     {
+        soundSystem ??= ServiceLocator.GetService<ISoundSystem>();
+        var config = soundSystem.GetSound(SoundType.Embient);
+        config.ReplaceSound(bossClip);
+
+
         sliderPanel.gameObject.SetActive(true);
         bossSlider.fillAmount = 0;
         var textBoss = bossText.text;
@@ -48,6 +57,7 @@ public class BossUI : MonoBehaviour, IBossUI
             yield return null;
         }
 
+        config.ReplaceSound(defaultClip);
         sliderPanel.gameObject.SetActive(false);
     }
 }

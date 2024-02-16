@@ -5,5 +5,6 @@
         var damageTaker = ServiceLocator.GetService<IPlayerTargetSearcher>().FoundedTarget.target
             .GetComponent<IDamageTaker>();
         damageTaker?.TakeDamage(damage);
+        ServiceLocator.GetService<ISoundSystem>().PlaySound(SoundType.Ar);
     }
 }

@@ -50,10 +50,10 @@ public class ZombieHealthController : HealthController
         base.Dead();
         if (isAlive)
         {
+            ServiceLocator.GetService<ISoundSystem>().PlaySound(SoundType.ZombieDead);
             isAlive = false;
             ServiceLocator.GetService<ILevelSystem>().DeadZombie++;
         }
-
         searchTarget.IsTargetAlive = false;
     }
 

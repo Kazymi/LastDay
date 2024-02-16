@@ -17,4 +17,7 @@ MonoBehaviour:
     - {fileID: 7918778257067757436, guid: 9083ec02258298449829fe3057164b96, type: 3}
     - {fileID: 7918778257067757436, guid: 1fa14ee5f5f3bf44c85d2d917e3cd2c0, type: 3}
     <amountEnemy>k__BackingField: 10
+  - <enemyPrefabs>k__BackingField:
+    - {fileID: 8469711321000536651, guid: 243c5692871bf1b4e972426998d929bd, type: 3}
+    <amountEnemy>k__BackingField: 1
   <spawnInterval>k__BackingField: 0.4
