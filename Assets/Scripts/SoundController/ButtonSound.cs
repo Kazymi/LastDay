@@ -7,7 +7,7 @@ public class ButtonSound : MonoBehaviour
     private Button _button;
     private ISoundSystem soundSystem;
 
-    void Awake()
+    void Start()
     {
         soundSystem = ServiceLocator.GetService<ISoundSystem>();
         _button = GetComponent<Button>();
