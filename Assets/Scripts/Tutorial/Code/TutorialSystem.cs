@@ -2,8 +2,9 @@ using UnityEngine;
 using NaughtyAttributes;
 using System.Linq;
 using System;
+using System.Collections;
 
-    public class TutorialSystem : MonoBehaviour
+public class TutorialSystem : MonoBehaviour
     {
         [Header("Settings")]
         [SerializeField, ReorderableList] TutorialNode[] nodes;
@@ -33,10 +34,20 @@ using System;
             }
         }
 
+        private void Awake()
+        {
+            StartCoroutine(StartCoroutine());
+        }
         public void Update()
         {
             if (shouldUpdate && node != null)
                 node.Steps[stepIndex].OnUpdate();
+        }
+
+        private IEnumerator StartCoroutine()
+        {
+            yield return new WaitForSeconds(0.5f);
+            Begin();
         }
 
         void BeginStep()

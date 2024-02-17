@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class LevelSystem : MonoBehaviour, ILevelSystem
 {
+    [SerializeField] private bool isLoop = true;
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private int prepareTime;
     [SerializeField] private LevelSystemUI levelSystemUi;
@@ -38,9 +39,12 @@ public class LevelSystem : MonoBehaviour, ILevelSystem
         CheckLevel();
         if (DeadZombie >= AmountZombie)
         {
-            Initialize();
-            SaveData.Instance.CurrentLevel++;
-            DeadZombie = -1;
+            if (isLoop)
+            {
+                SaveData.Instance.CurrentLevel++;
+                DeadZombie = -1;
+                Initialize();
+            }
         }
     }
 
@@ -58,17 +62,19 @@ public class LevelSystem : MonoBehaviour, ILevelSystem
     {
         levelSystemUi.sliderObject.gameObject.SetActive(false);
         levelSystemUi.readyText.gameObject.SetActive(true);
-        var currentTime = prepareTime;
-        while (currentTime > 0)
+        if (prepareTime != 0)
         {
-            currentTime -= 1;
-            levelSystemUi.readyText.SetText(currentTime.ToString());
-            levelSystemUi.readyText.transform.localScale = Vector3.zero;
-            levelSystemUi.readyText.transform.DOKill();
-            levelSystemUi.readyText.transform.DOScale(Vector3.one, 1f);
-            yield return new WaitForSeconds(1f);
+            var currentTime = prepareTime;
+            while (currentTime > 0)
+            {
+                currentTime -= 1;
+                levelSystemUi.readyText.SetText(currentTime.ToString());
+                levelSystemUi.readyText.transform.localScale = Vector3.zero;
+                levelSystemUi.readyText.transform.DOKill();
+                levelSystemUi.readyText.transform.DOScale(Vector3.one, 1f);
+                yield return new WaitForSeconds(1f);
+            }
         }
-
         zombieSpawner.SpawnZombie();
         DeadZombie = 0;
         AmountZombie = zombieSpawner.CurrentZombieAmount;

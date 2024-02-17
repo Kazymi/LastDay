@@ -9,6 +9,8 @@ public class ZombieSpawner : MonoBehaviour, IZombieSpawner
 
     public int CurrentZombieAmount { get; private set; }
 
+    public bool AllZombieKilled = false;
+
     private void OnEnable()
     {
         ServiceLocator.Subscribe<IZombieSpawner>(this);

@@ -8,6 +8,7 @@ public class SaveData : MonoBehaviour
     [SerializeField] private bool hack;
     [SerializeField] private TMP_Text moneyText; //todo
 
+    public bool WeaponFound;
     private const string SaveKey = "TheDayLast";
     private Save save;
 
