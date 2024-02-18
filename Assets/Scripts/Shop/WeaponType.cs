@@ -14,4 +14,5 @@ public enum WeaponType
     MAuto,
     MAutoSecond,
     MAutoThird,
+    Clear,
 }

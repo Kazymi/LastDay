@@ -29,6 +29,12 @@ public class Wallet
         textWallet.transform.DOShakeScale(0.2f, 0.3f).OnComplete(() => textWallet.transform.DOScale(Vector3.one, 0.1f));
     }
 
+    public void SetMoney(int money)
+    {
+        saveData.Money = money;
+        textWallet.text = saveData.Money.ToString();
+        textWallet.transform.DOShakeScale(0.2f, 0.3f).OnComplete(() => textWallet.transform.DOScale(Vector3.one, 0.1f));
+    }
     public bool IsCanBeReduce(int money)
     {
         return saveData.Money >= money;

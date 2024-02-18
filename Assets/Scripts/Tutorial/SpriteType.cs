@@ -1,5 +1,6 @@
 ﻿public enum SpriteType
 {
     ZombieFace,
-    Weapon
+    Weapon,
+    TutorialExit,    
 }

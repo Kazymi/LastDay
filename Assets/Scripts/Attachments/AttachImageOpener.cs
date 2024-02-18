@@ -30,6 +30,7 @@ public class AttachImageOpener : MonoBehaviour, IAttachmentUpdate
 
     private void OnClick()
     {
+        SaveData.Instance.IsTutorialOpen = true;
         foreach (var activateObject in activateObjects)
         {
             activateObject.gameObject.SetActive(!IsActive);

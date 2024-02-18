@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class TutorialSecond : TutorialInitializeClass
@@ -96,5 +99,33 @@ public class TutorialFiveStep : TutorialInitializeClass
     {
         base.OnBegin();
         tutorialParameters.QuestStateMachine.StartNewQuest(tutorialParameters.KillZobies);
+    }
+}
+
+[Serializable]
+public class TutorialSixthStep : TutorialInitializeClass
+{
+    public override void OnUpdate()
+    {
+        base.OnUpdate();
+        if (tutorialParameters.ExitQuest.IsQuestCompleted())
+        {
+            Complete();
+        }
+    }
+
+    protected override void OnBegin()
+    {
+        base.OnBegin();
+        tutorialParameters.QuestStateMachine.StartNewQuest(tutorialParameters.ExitQuest);
+        tutorialParameters.TutorialExit.exitOutline.enabled = true;
+    }
+
+    protected override void OnComplete()
+    {
+        SaveData.Instance.IsTutorialLocationCompleted = true;
+        SaveData.Instance.BuyWeapon = new List<WeaponType>();
+        SaveData.Instance.Save();
+        tutorialParameters.TutorialExit.fadeImage.DOFade(1, 1.5f).OnComplete(() => { SceneManager.LoadScene(0); });
     }
 }

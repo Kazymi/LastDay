@@ -25,7 +25,7 @@ public class TutorialQuestFindWeapon : Quest
 
     public override Sprite GetImage()
     {
-        return ServiceLocator.GetService<ISpriteContainer>().GetSprite(SpriteType.ZombieFace);
+        return ServiceLocator.GetService<ISpriteContainer>().GetSprite(SpriteType.Weapon);
     }
 
     public override bool IsQuestCompleted()

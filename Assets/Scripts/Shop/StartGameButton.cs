@@ -15,6 +15,7 @@ public class StartGameButton : MonoBehaviour
 
     private void StarGame()
     {
+        SaveData.Instance.IsGameStarted = true;
         fadeImage.gameObject.SetActive(true);
         fadeImage.DOFade(1, 1.3f).OnComplete(() => SceneManager.LoadScene(1));
     }

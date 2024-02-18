@@ -8,9 +8,26 @@ public class SaveData : MonoBehaviour
     [SerializeField] private bool hack;
     [SerializeField] private TMP_Text moneyText; //todo
 
+
+    public bool IsTutorialOpen;
+    public bool IsGameStarted;
+
     public bool WeaponFound;
     private const string SaveKey = "TheDayLast";
     private Save save;
+
+
+    public bool IsTutorialLocationCompleted
+    {
+        get => save.IsTutorialLocationCompleted;
+        set => save.IsTutorialLocationCompleted = value;
+    }
+
+    public bool IsTutorialMenuCompleted
+    {
+        get => save.IsTutorialMenuCompleted;
+        set => save.IsTutorialMenuCompleted = value;
+    }
 
     public static SaveData Instance;
 
@@ -25,6 +42,7 @@ public class SaveData : MonoBehaviour
         get => save.IsSoundAcivated;
         set => save.IsSoundAcivated = value;
     }
+
     public int CurrentLevel
     {
         get => save.CurrentLevel;
@@ -60,6 +78,16 @@ public class SaveData : MonoBehaviour
             save.Initialize();
         }
 
+        if (IsTutorialMenuCompleted == false)
+        {
+            var isFirstMap = save.IsTutorialLocationCompleted;
+            save = new Save();
+            save.Initialize();
+            save.IsTutorialLocationCompleted = isFirstMap;
+            save.BuyWeapon = new List<WeaponType>();
+        }
+
+        save.FreeWeapon = WeaponType.Clear;
         Instance = this;
         Wallet = new Wallet(moneyText, save);
     }
@@ -91,6 +119,9 @@ public class Save
     public List<WeaponType> BuyWeapon = new List<WeaponType>() {WeaponType.PP};
     public List<AttachmentsSave> AttachmentsSaves;
     public int CurrentLevel;
+
+    public bool IsTutorialLocationCompleted;
+    public bool IsTutorialMenuCompleted;
 
     public bool IsSoundAcivated = true;
     public WeaponType FreeWeapon;

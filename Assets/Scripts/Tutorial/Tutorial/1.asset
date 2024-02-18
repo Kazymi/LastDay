@@ -18,6 +18,8 @@ MonoBehaviour:
   - rid: 4362895524450533379
   - rid: 4362895524450533380
   - rid: 4362895524450533381
+  - rid: 4362895545058197504
+  - rid: 4362895545058197505
   references:
     version: 2
     RefIds:
@@ -35,4 +37,10 @@ MonoBehaviour:
       data: 
     - rid: 4362895524450533381
       type: {class: TutorialFiveStep, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 4362895545058197504
+      type: {class: TutorialSixthStep, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 4362895545058197505
+      type: {class: TestStep1, ns: , asm: Assembly-CSharp}
       data: 
