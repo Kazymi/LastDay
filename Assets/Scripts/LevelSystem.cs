@@ -13,6 +13,8 @@ public class LevelSystem : MonoBehaviour, ILevelSystem
     [SerializeField] private LevelSystemUI levelSystemUi;
 
     public int AmountZombie;
+
+    private int startMoney;
     public int DeadZombie { get; set; } = -1;
 
     private IZombieSpawner zombieSpawner;
@@ -75,6 +77,7 @@ public class LevelSystem : MonoBehaviour, ILevelSystem
                 yield return new WaitForSeconds(1f);
             }
         }
+
         zombieSpawner.SpawnZombie();
         DeadZombie = 0;
         AmountZombie = zombieSpawner.CurrentZombieAmount;

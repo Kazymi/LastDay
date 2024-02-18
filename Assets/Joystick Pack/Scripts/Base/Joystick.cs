@@ -18,7 +18,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         get
         {
             if (IsPause) return Vector2.zero;
-            return new Vector2(Horizontal, Vertical);
+            return GetDirection();
         }
     }
 
@@ -26,6 +26,17 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
         get { return handleRange; }
         set { handleRange = Mathf.Abs(value); }
+    }
+
+    private Vector2 GetDirection()
+    {
+        var returnValue = new Vector2(Horizontal, Vertical);
+        if (returnValue == Vector2.zero)
+        {
+            returnValue = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        }
+
+        return returnValue;
     }
 
     public bool IsPause { get; set; }

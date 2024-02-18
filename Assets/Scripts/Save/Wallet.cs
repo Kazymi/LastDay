@@ -7,6 +7,7 @@ public class Wallet
     private readonly TMP_Text textWallet;
     private Save saveData;
 
+    public int Money => saveData.Money;
     public Wallet(TMP_Text textWallet, Save saveData)
     {
         this.textWallet = textWallet;

@@ -1,3 +1,6 @@
+using CrazyGames;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -6,44 +9,55 @@ public class LoseScreen : MonoBehaviour
 {
     [SerializeField] private GameObject loseScren;
     [SerializeField] private PlayerHealthBase playerHealthBase;
+    [SerializeField] private TMP_Text earnedMoney;
 
-    [SerializeField] private Button[] menuButton;
-    [SerializeField] private Button restart;
+    [SerializeField] private Button menuButton;
+    [SerializeField] private Button reward;
+
+    private int startMoney;
+    private int earned;
+
+    private void Start()
+    {
+        startMoney = SaveData.Instance.Wallet.Money;
+    }
 
     private void OnEnable()
     {
-        foreach (var button in menuButton)
-        {
-            button.onClick.AddListener(Menu);
-        }
-
         playerHealthBase.HealthEmpty += LoseScreenShow;
-        restart.onClick.AddListener(Restart);
+        reward.onClick.AddListener(Reward);
+        menuButton.onClick.AddListener(Claim);
     }
 
     private void OnDisable()
     {
-        foreach (var button in menuButton)
-        {
-            button.onClick.RemoveListener(Menu);
-        }
-
         playerHealthBase.HealthEmpty -= LoseScreenShow;
-        restart.onClick.RemoveListener(Restart);
+        reward.onClick.RemoveListener(Reward);
+        menuButton.onClick.RemoveListener(Claim);
     }
 
     private void LoseScreenShow()
     {
+        earned = SaveData.Instance.Wallet.Money - startMoney;
+        earnedMoney.text = earned.ToString();
         loseScren.gameObject.SetActive(true);
     }
 
-    private void Restart()
+    private void Reward()
     {
-        SaveData.Instance.Save();
-        SceneManager.LoadScene(1);
+        reward.interactable = false;
+        reward.GetComponent<Animator>().enabled = false;
+        reward.transform.DOScale(Vector3.one, 0.3f);
+        reward.gameObject.SetActive(false);
+        CrazyAds.Instance.beginAdBreakRewarded(() =>
+        {
+            SaveData.Instance.Wallet.AddMoney(earned);
+            earned *= 2;
+            earnedMoney.text = earned.ToString();
+        });
     }
 
-    private void Menu()
+    private void Claim()
     {
         SaveData.Instance.Save();
         SceneManager.LoadScene(0);
