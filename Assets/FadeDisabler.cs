@@ -13,7 +13,7 @@ public class FadeDisabler : MonoBehaviour
     private void Awake()
     {
         image = GetComponent<Image>();
-        image.DOFade(0, 0.5f);
+        image.DOFade(0, 1.5f);
     }
 
     private void Start()
