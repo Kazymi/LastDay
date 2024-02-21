@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CrazyGames;
+using UnityEngine;
 
 public class ZombieModelInitializer : MonoBehaviour
 {
@@ -35,14 +36,34 @@ public class ZombieModelInitializer : MonoBehaviour
         {
             weapon.transform.parent = null;
             weapon.GetComponent<Rigidbody>().isKinematic = false;
-            Destroy(weapon,25);
+            CrazySDK.Instance.GetSystemInfo(systemInfo =>
+            {
+                if (systemInfo.device.type == "desktop")
+                {
+                    Destroy(weapon,25f);
+                }
+                else
+                {
+                    Destroy(weapon);
+                }
+            });
         }
 
         if (backPack != null)
         {
             backPack.GetComponent<Rigidbody>().isKinematic = false;
             backPack.transform.parent = null;
-            Destroy(backPack,25);
+            CrazySDK.Instance.GetSystemInfo(systemInfo =>
+            {
+                if (systemInfo.device.type == "desktop")
+                {
+                    Destroy(backPack,25f);
+                }
+                else
+                {
+                    Destroy(backPack);
+                }
+            });
         }
     }
 

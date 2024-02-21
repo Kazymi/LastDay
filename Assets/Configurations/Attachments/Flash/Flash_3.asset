@@ -15,6 +15,7 @@ MonoBehaviour:
   <AttachType>k__BackingField: 10
   <Icon>k__BackingField: {fileID: -297178548, guid: adaa72de03a128e4a83d740ccf0aaa0c, type: 3}
   <Price>k__BackingField: 300
+  <isReward>k__BackingField: 1
   <attachObject>k__BackingField: {fileID: 1317305901009090, guid: ef129d0e65696f54e88ef1fcb3366c05, type: 3}
   <AttachParameters>k__BackingField:
   - <ParametersType>k__BackingField: 1

@@ -6,7 +6,7 @@ public class Hack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            SaveData.Instance.Wallet.AddMoney(999);
+            //   SaveData.Instance.Wallet.AddMoney(999);
         }
     }
 }

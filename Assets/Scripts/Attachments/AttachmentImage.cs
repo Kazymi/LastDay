@@ -5,6 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image), typeof(Button))]
 public class AttachmentImage : MonoBehaviour
 {
+    
     [SerializeField] private AttachmentBuyButton attachmentBuyButton;
     private Image image;
     private AttachType attachType;

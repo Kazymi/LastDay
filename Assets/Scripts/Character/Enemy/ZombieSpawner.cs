@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
+using CrazyGames;
 using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour, IZombieSpawner
@@ -23,6 +24,7 @@ public class ZombieSpawner : MonoBehaviour, IZombieSpawner
 
     public void SpawnZombie()
     {
+        SaveData.Instance.SpawnedZombie = 0;
         var currentLvel = SaveData.Instance.CurrentLevel;
         if (currentLvel >= casualZombie.Length) currentLvel = casualZombie.Length - 1;
         CurrentZombieAmount = 0;
@@ -40,12 +42,25 @@ public class ZombieSpawner : MonoBehaviour, IZombieSpawner
         while (true)
         {
             yield return new WaitForSeconds(casualZombie[currentLvel].spawnInterval);
+            var maxZombie = 40;
+            CrazySDK.Instance.GetSystemInfo(systemInfo =>
+            {
+                if (systemInfo.device.type == "desktop")
+                {
+                }
+                else
+                {
+                    maxZombie = 14;
+                }
+            });
+            if (SaveData.Instance.SpawnedZombie >= maxZombie) continue;
             SpawnZombie(currentLvel);
         }
     }
 
     private void SpawnZombie(int levelKey)
     {
+        SaveData.Instance.SpawnedZombie++;
         var pos = spawnPositions[Random.Range(0, spawnPositions.Length)];
         var zombie = casualZombie[levelKey];
         var zombieid = zombie.LevelConfigurations.Where(t => t.SpawnedZombie > 0).ToList();

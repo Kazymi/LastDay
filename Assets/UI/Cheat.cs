@@ -8,6 +8,6 @@ public class Cheat : MonoBehaviour
 {
     public void AddMoney()
     {
-        SaveData.Instance.Wallet.AddMoney(10000);
+        //sSaveData.Instance.Wallet.AddMoney(10000);
     }
 }

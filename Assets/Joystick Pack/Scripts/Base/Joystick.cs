@@ -17,7 +17,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
         get
         {
-            if (IsPause) return Vector2.zero;
+            if (IsPause || gameObject.activeInHierarchy==false) return Vector2.zero;
             return GetDirection();
         }
     }

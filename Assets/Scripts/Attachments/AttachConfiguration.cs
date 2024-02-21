@@ -9,6 +9,7 @@ public class AttachConfiguration : ScriptableObject
     [field: SerializeField] public AttachType AttachType { get; private set; }
     [field: SerializeField] public Sprite Icon { get; private set; }
     [field: SerializeField] public int Price { get; private set; }
+    [field: SerializeField] public bool isReward { get; private set; }
     [field: SerializeField] public GameObject attachObject { get; private set; }
     [field: SerializeField] public AttachParameters[] AttachParameters { get; private set; }
 }

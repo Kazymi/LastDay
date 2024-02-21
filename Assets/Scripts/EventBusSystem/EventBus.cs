@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace EventBusSystem
@@ -40,7 +41,7 @@ namespace EventBusSystem
         {
             if (!s_Subscribers.ContainsKey(typeof(TSubscriber))) return;
             SubscribersList<IGlobalSubscriber> subscribers = s_Subscribers[typeof(TSubscriber)];
-            foreach (IGlobalSubscriber subscriber in subscribers.List)
+            foreach (IGlobalSubscriber subscriber in subscribers.List.ToList())
             {
                 try
                 {

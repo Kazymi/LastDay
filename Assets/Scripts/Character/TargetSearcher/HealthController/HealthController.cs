@@ -12,10 +12,12 @@ public class HealthController : MonoBehaviour
     public bool isDead;
 
     public event Action HealthEmpty;
+    public event Action HealthUpdated;
 
     private void Awake()
     {
         currentHealth = healthConfiguration.Health;
+        HealthUpdated?.Invoke();
     }
 
     private void OnEnable()
@@ -32,6 +34,7 @@ public class HealthController : MonoBehaviour
     {
         currentHealth -= damage;
         CheckHealth();
+        HealthUpdated?.Invoke();
     }
 
     protected virtual void CheckHealth()

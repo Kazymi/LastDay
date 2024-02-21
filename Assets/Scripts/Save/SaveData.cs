@@ -12,6 +12,8 @@ public class SaveData : MonoBehaviour
     public bool IsTutorialOpen;
     public bool IsGameStarted;
 
+    public int SpawnedZombie;
+
     public bool WeaponFound;
     private const string SaveKey = "TheDayLast";
     private Save save;
