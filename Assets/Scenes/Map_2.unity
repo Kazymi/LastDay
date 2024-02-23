@@ -5209,6 +5209,7 @@ MonoBehaviour:
   moneyText: {fileID: 199086579}
   IsTutorialOpen: 0
   IsGameStarted: 0
+  SpawnedZombie: 0
   WeaponFound: 0
 --- !u!4 &442714152
 Transform:
@@ -7433,8 +7434,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.5254298}
+  m_Center: {x: 0, y: 0, z: 0.015369542}
 --- !u!23 &638461001
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11298,8 +11299,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.5378869}
+  m_Center: {x: 0, y: 0, z: -0.26894334}
 --- !u!23 &894765771
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15297,8 +15298,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.2315226}
+  m_Center: {x: 0, y: 0, z: -0.11576298}
 --- !u!23 &1229944847
 MeshRenderer:
   m_ObjectHideFlags: 0

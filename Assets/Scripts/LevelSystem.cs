@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class LevelSystem : MonoBehaviour, ILevelSystem
 {
+    [SerializeField] private LoseScreen loseScreen;
     [SerializeField] private bool isLoop = true;
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private int prepareTime;
@@ -21,7 +22,6 @@ public class LevelSystem : MonoBehaviour, ILevelSystem
 
     private void Start()
     {
-        SaveData.Instance.CurrentLevel = 0;
         zombieSpawner = ServiceLocator.GetService<IZombieSpawner>();
         Initialize();
     }
@@ -44,8 +44,12 @@ public class LevelSystem : MonoBehaviour, ILevelSystem
             if (isLoop)
             {
                 SaveData.Instance.CurrentLevel++;
+                Debug.Log(SaveData.Instance.CurrentLevel);
+                SaveData.Instance.Save();
                 DeadZombie = -1;
-                Initialize();
+                loseScreen.PlayNextStage();
+                levelSystemUi.sliderObject.gameObject.SetActive(false);
+                levelSystemUi.readyText.gameObject.SetActive(false);
             }
         }
     }
