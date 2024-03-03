@@ -16,9 +16,9 @@ MonoBehaviour:
   - <enemyPrefabs>k__BackingField:
     - {fileID: 7918778257067757436, guid: eb8e45a0879cbff4f8eba8cefe985ae4, type: 3}
     - {fileID: 7918778257067757436, guid: 2de512e96ead3614f90da1e8a2d218a4, type: 3}
-    <amountEnemy>k__BackingField: 50
+    <amountEnemy>k__BackingField: 12
   - <enemyPrefabs>k__BackingField:
     - {fileID: 7918778257067757436, guid: 6a2b2ef9794f236448c14aa5fd14decc, type: 3}
     - {fileID: 7918778257067757436, guid: 357fda0cb10a75d4cad8b26f8b84921a, type: 3}
-    <amountEnemy>k__BackingField: 50
-  <spawnInterval>k__BackingField: 0.4
+    <amountEnemy>k__BackingField: 25
+  <spawnInterval>k__BackingField: 0.3

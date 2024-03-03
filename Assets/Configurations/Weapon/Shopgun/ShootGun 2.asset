@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5536b46b87ef42346b75fdf1e1ec2eb0, type: 3}
   m_Name: ShootGun 2
   m_EditorClassIdentifier: 
-  <FireRate>k__BackingField: 0.4
-  <Damage>k__BackingField: 3
+  <FireRate>k__BackingField: 0.16
+  <Damage>k__BackingField: 0.5
   <BulletType>k__BackingField: 1
-  <CritChans>k__BackingField: 5
+  <CritChans>k__BackingField: 2
