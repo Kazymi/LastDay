@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class ParametersMenu : MonoBehaviour, IAttachmentUpdate
 {
+    [SerializeField] private bool isAutomatickShow;
     [SerializeField] private AttachmentConfigurationConstructor attachmentConfigurationConstructor;
     [SerializeField] private Image fadeImage;
     [SerializeField] private GameObject weaponContainer;
@@ -25,13 +26,15 @@ public class ParametersMenu : MonoBehaviour, IAttachmentUpdate
     [SerializeField] private Image critChansBonusImage;
 
     [SerializeField] private Button selectButton;
-    [SerializeField] private Button closeButton;
 
     private void OnEnable()
     {
-        ShowParameters();
         EventBus.Subscribe(this);
-        selectButton.interactable = SaveData.Instance.FreeWeapon != SaveData.Instance.SelectedWeapon;
+        if (isAutomatickShow)
+        {
+            ShowParameters();
+            UpdateBonusStats();
+        }
     }
 
     private void OnDisable()
@@ -42,9 +45,14 @@ public class ParametersMenu : MonoBehaviour, IAttachmentUpdate
     private void Awake()
     {
         selectButton.onClick.AddListener(Select);
-        closeButton.onClick.AddListener(Close);
     }
 
+    public void UpdateVisible()
+    {
+        ShowParameters();
+        
+        selectButton.interactable = SaveData.Instance.FreeWeapon != SaveData.Instance.SelectedWeapon;
+    }
     private void UpdateBonusStats()
     {
         var saveData = SaveData.Instance.AttachList.Where(t => t.WeaponType == SaveData.Instance.FreeWeapon)
@@ -95,10 +103,6 @@ public class ParametersMenu : MonoBehaviour, IAttachmentUpdate
     private void ShowParameters()
     {
         fadeImage.DOFade(0.96f, 0.3f);
-        weaponContainer.gameObject.SetActive(true);
-        weaponContainer.transform.DOKill();
-        weaponContainer.transform.localScale = Vector3.zero;
-        weaponContainer.transform.DOScale(1, 0.5f);
         var currentParameters =
             weaponStorage.WeaponClassificators.Where(t => t.WeaponType == SaveData.Instance.FreeWeapon).ToList()[0];
         damageImag.DOFillAmount(currentParameters.WeaponConfiguration.Damage / 10f, 0.5f);
@@ -112,7 +116,6 @@ public class ParametersMenu : MonoBehaviour, IAttachmentUpdate
     private void Close()
     {
         fadeImage.DOFade(0, 0.3f);
-        weaponContainer.gameObject.SetActive(false);
         shopPanel.gameObject.SetActive(true);
         updatePanel.gameObject.SetActive(false);
     }
@@ -126,6 +129,7 @@ public class ParametersMenu : MonoBehaviour, IAttachmentUpdate
 
     public void AttachmentUpdated()
     {
+        UpdateVisible();
         UpdateBonusStats();
     }
 }

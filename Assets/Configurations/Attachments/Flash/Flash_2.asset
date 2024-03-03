@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Flash_2
   m_EditorClassIdentifier: 
   <AttachType>k__BackingField: 9
-  <Icon>k__BackingField: {fileID: 1184484910, guid: adaa72de03a128e4a83d740ccf0aaa0c, type: 3}
+  <Icon>k__BackingField: {fileID: 693098018, guid: 734c22088815e0d449fbaafa3033c179, type: 3}
   <Price>k__BackingField: 200
-  <attachObject>k__BackingField: {fileID: 1010455169370680, guid: 5b30bc5d4d210504695bb674e7c07aba, type: 3}
+  <isReward>k__BackingField: 0
+  <attachObject>k__BackingField: {fileID: 2747247376543093819, guid: c720069b6f176304b92c9663a0317df8, type: 3}
   <AttachParameters>k__BackingField:
   - <ParametersType>k__BackingField: 1
     <AddPercent>k__BackingField: 0.2

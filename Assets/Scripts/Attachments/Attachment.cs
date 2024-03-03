@@ -103,6 +103,7 @@ public class Attachment : MonoBehaviour, IAttachment
 
     public void ConnectAttachment(AttachmentList attachmentList, AttachType attachType)
     {
+        Debug.Log("123");
         ClearAttachment(attachmentList, true);
         attachmentList.attachType = attachType;
         var currentConfiguration =

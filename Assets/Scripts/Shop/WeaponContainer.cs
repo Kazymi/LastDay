@@ -3,12 +3,28 @@ using UnityEngine;
 
 public class WeaponContainer : MonoBehaviour
 {
+    [SerializeField] private GameObject buttonClose;
     [SerializeField] private bool isShop;
     [SerializeField] private WeaponSelector[] weaponSelectors;
 
+    [SerializeField] private GameObject shop;
+
+    public void OpenShop()
+    {
+        gameObject.SetActive(false);
+        shop.SetActive(true);
+    }
+
     private void OnEnable()
     {
+        if (buttonClose != null) buttonClose.gameObject.SetActive(true);
         StartCoroutine(PreInit());
+    }
+
+    private void OnDisable()
+    {
+        if (buttonClose != null)
+            buttonClose.gameObject.SetActive(false);
     }
 
     private IEnumerator PreInit()

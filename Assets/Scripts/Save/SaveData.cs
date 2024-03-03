@@ -80,14 +80,14 @@ public class SaveData : MonoBehaviour
             save.Initialize();
         }
 
-        if (IsTutorialMenuCompleted == false)
-        {
-            var isFirstMap = save.IsTutorialLocationCompleted;
-            save = new Save();
-            save.Initialize();
-            save.IsTutorialLocationCompleted = isFirstMap;
-            save.BuyWeapon = new List<WeaponType>();
-        }
+        // if (IsTutorialMenuCompleted == false)
+        // {
+        //     var isFirstMap = save.IsTutorialLocationCompleted;
+        //     save = new Save();
+        //     save.Initialize();
+        //     save.IsTutorialLocationCompleted = isFirstMap;
+        //     save.BuyWeapon = new List<WeaponType>();
+        // }
 
         save.FreeWeapon = WeaponType.Clear;
         Instance = this;

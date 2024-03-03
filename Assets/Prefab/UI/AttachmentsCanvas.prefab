@@ -125,6 +125,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3209815900126040070}
     m_Modifications:
+    - target: {fileID: 2325062862851881145, guid: 9375f9c41d11810469392f4d1aa2e57c, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 21300000, guid: 9be2759ad35dbb34db9f4ec2a6b8a4e8, type: 3}
+    - target: {fileID: 2325062862851881145, guid: 9375f9c41d11810469392f4d1aa2e57c, type: 3}
+      propertyPath: reward
+      value: 
+      objectReference: {fileID: 21300000, guid: 7fed6b1644beafd4aaf6dcdcb3d81407, type: 3}
     - target: {fileID: 4748105200880527322, guid: 9375f9c41d11810469392f4d1aa2e57c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

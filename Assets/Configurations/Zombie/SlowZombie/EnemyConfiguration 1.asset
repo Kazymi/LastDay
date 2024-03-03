@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EnemyConfiguration 1
   m_EditorClassIdentifier: 
   <AddMoney>k__BackingField: 125
-  <Speed>k__BackingField: 1
+  <Speed>k__BackingField: 1.5
   <Damage>k__BackingField: 5

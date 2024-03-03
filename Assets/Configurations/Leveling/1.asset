@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <LevelConfigurations>k__BackingField:
   - <enemyPrefabs>k__BackingField:
-    - {fileID: 7918778257067757436, guid: 9083ec02258298449829fe3057164b96, type: 3}
-    - {fileID: 7918778257067757436, guid: 1fa14ee5f5f3bf44c85d2d917e3cd2c0, type: 3}
-    <amountEnemy>k__BackingField: 10
-  <spawnInterval>k__BackingField: 0.4
+    - {fileID: 7918778257067757436, guid: eb8e45a0879cbff4f8eba8cefe985ae4, type: 3}
+    - {fileID: 7918778257067757436, guid: 2de512e96ead3614f90da1e8a2d218a4, type: 3}
+    <amountEnemy>k__BackingField: 50
+  <spawnInterval>k__BackingField: 0.2

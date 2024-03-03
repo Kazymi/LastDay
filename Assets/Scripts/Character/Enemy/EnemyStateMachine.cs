@@ -52,13 +52,17 @@ public class EnemyStateMachine : MonoBehaviour
         Tick();
     }
 
-    protected virtual void Tick(){}
+    protected virtual void Tick()
+    {
+    }
+
     private void InitializeStateMachine()
     {
         var idleState = new EnemyIdleState(characterAnimationController);
         var wakeUPState = new EnemyWakeUpState(characterAnimationController);
+        var speed = Random.Range(enemyConfiguration.Speed * 0.8f, enemyConfiguration.Speed * 1.3f);
         var moveToTargetState =
-            new EnemyMoveState(characterAnimationController, navMeshAgent, enemyConfiguration.Speed, targetSearcher);
+            new EnemyMoveState(characterAnimationController, navMeshAgent, speed, targetSearcher);
         var attackState = new EnemyAttackState(characterAnimationController, transform, targetSearcher);
 
         attackState.AddTransition(new StateTransition(moveToTargetState,

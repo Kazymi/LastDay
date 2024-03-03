@@ -87,9 +87,8 @@ public class ZombieModelInitializer : MonoBehaviour
             weapon = weapons[Random.Range(0, weapons.Length)];
             weapon.SetActive(true);
         }
-
-        var ifSpawnFaces = Random.Range(0, 10) < 6;
-        if (ifSpawnFaces && faces.Length > 0)
+        
+        if (faces.Length > 0)
         {
             var face = faces[Random.Range(0, faces.Length)];
             face.SetActive(true);

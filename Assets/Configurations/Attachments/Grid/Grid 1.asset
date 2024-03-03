@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Grid 1
   m_EditorClassIdentifier: 
   <AttachType>k__BackingField: 13
-  <Icon>k__BackingField: {fileID: 1456440521, guid: adaa72de03a128e4a83d740ccf0aaa0c, type: 3}
+  <Icon>k__BackingField: {fileID: 2071719354, guid: 734c22088815e0d449fbaafa3033c179, type: 3}
   <Price>k__BackingField: 50
   <isReward>k__BackingField: 1
-  <attachObject>k__BackingField: {fileID: 1563891176625418, guid: 3dee5d6139a677a479f0bbc12a893e22, type: 3}
+  <attachObject>k__BackingField: {fileID: 4869676300308127097, guid: 41171b73986a29e40aac4ae0eeb045fd, type: 3}
   <AttachParameters>k__BackingField:
   - <ParametersType>k__BackingField: 2
     <AddPercent>k__BackingField: 0.1
