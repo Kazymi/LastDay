@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TargetSearcher : MonoBehaviour, ITargetSearcher
 {
-    [SerializeField] private TargetSearcherConfiguration targetSearcherConfiguration;
+    [SerializeField] protected TargetSearcherConfiguration targetSearcherConfiguration;
 
     private float currentTime;
 
     public bool IsTargetFounded => FoundedTarget != null;
-    public ITargetable FoundedTarget { get; private set; }
+    public ITargetable FoundedTarget { get; protected set; }
 
     private void Update()
     {
@@ -21,8 +21,8 @@ public class TargetSearcher : MonoBehaviour, ITargetSearcher
     {
         if (currentTime <= 0)
         {
-            currentTime = targetSearcherConfiguration.SearchCooldown;
             SearchTarget();
+            currentTime = targetSearcherConfiguration.SearchCooldown;
         }
         else
         {
@@ -30,7 +30,7 @@ public class TargetSearcher : MonoBehaviour, ITargetSearcher
         }
     }
 
-    private void CheckCurrentTarget()
+    protected virtual void CheckCurrentTarget()
     {
         if (FoundedTarget != null)
         {

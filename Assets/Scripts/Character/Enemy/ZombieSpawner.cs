@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
-using CrazyGames;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class ZombieSpawner : MonoBehaviour, IZombieSpawner
 {
+    [SerializeField] private bool isAllSpawn;
+    [SerializeField] private Animator playAnimator;
     [SerializeField] private bool isGizmos;
     [SerializeField] private ZombieSpawnPositionConfiguration[] spawnPositions;
     [SerializeField] private ZombieSpawnConfiguration[] casualZombie;
@@ -14,16 +15,6 @@ public class ZombieSpawner : MonoBehaviour, IZombieSpawner
     public int CurrentZombieAmount { get; private set; }
 
     public bool AllZombieKilled = false;
-
-    private void OnEnable()
-    {
-        ServiceLocator.Subscribe<IZombieSpawner>(this);
-    }
-
-    private void OnDisable()
-    {
-        ServiceLocator.Unsubscribe<IZombieSpawner>();
-    }
 
     public void SpawnZombie()
     {
@@ -42,20 +33,12 @@ public class ZombieSpawner : MonoBehaviour, IZombieSpawner
 
     private IEnumerator ZombieSpawn(int currentLvel)
     {
+        if (playAnimator != null)
+            playAnimator.SetTrigger("Play");
         while (true)
         {
             yield return new WaitForSeconds(casualZombie[currentLvel].spawnInterval);
             var maxZombie = 60;
-            CrazySDK.Instance.GetSystemInfo(systemInfo =>
-            {
-                if (systemInfo.device.type == "desktop")
-                {
-                }
-                else
-                {
-                    maxZombie = 14;
-                }
-            });
             if (SaveData.Instance.SpawnedZombie >= maxZombie) continue;
             SpawnZombie(currentLvel);
         }
@@ -63,21 +46,25 @@ public class ZombieSpawner : MonoBehaviour, IZombieSpawner
 
     private void SpawnZombie(int levelKey)
     {
-        SaveData.Instance.SpawnedZombie++;
-        var pos = spawnPositions[Random.Range(0, spawnPositions.Length)];
-        var zombie = casualZombie[levelKey];
-        var zombieid = zombie.LevelConfigurations.Where(t => t.SpawnedZombie > 0).ToList();
-        if (zombieid.Count == 0)
+        var spawnCound = isAllSpawn ? 60 : 1;
+        for (int i = 0; i < spawnCound; i++)
         {
-            StopAllCoroutines();
-            return;
-        }
+            SaveData.Instance.SpawnedZombie++;
+            var pos = spawnPositions[Random.Range(0, spawnPositions.Length)];
+            var zombie = casualZombie[levelKey];
+            var zombieid = zombie.LevelConfigurations.Where(t => t.SpawnedZombie > 0).ToList();
+            if (zombieid.Count == 0)
+            {
+                StopAllCoroutines();
+                return;
+            }
 
-        var randomZombie = zombieid[Random.Range(0, zombieid.Count)];
-        randomZombie.SpawnedZombie--;
-        var newZombie = Instantiate(randomZombie.enemyPrefabs[Random.Range(0, randomZombie.enemyPrefabs.Length)]);
-        var position = GetSpawnPosition();
-        newZombie.transform.position = position;
+            var randomZombie = zombieid[Random.Range(0, zombieid.Count)];
+            randomZombie.SpawnedZombie--;
+            var newZombie = Instantiate(randomZombie.enemyPrefabs[Random.Range(0, randomZombie.enemyPrefabs.Length)]);
+            var position = GetSpawnPosition();
+            newZombie.transform.position = position;
+        }
     }
 
     private void OnDrawGizmos()

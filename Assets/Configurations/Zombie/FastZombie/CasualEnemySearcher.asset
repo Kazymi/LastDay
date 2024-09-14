@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CasualEnemySearcher
   m_EditorClassIdentifier: 
   <SearchRadius>k__BackingField: 125
-  <SearchCooldown>k__BackingField: 0.2
+  <SearchCooldown>k__BackingField: 1255
   <SearchMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 64

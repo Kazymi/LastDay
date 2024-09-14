@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scope_7
   m_EditorClassIdentifier: 
   <AttachType>k__BackingField: 7
-  <Icon>k__BackingField: {fileID: -1773323327, guid: 734c22088815e0d449fbaafa3033c179, type: 3}
+  <Icon>k__BackingField: {fileID: -714223669, guid: 9e4219769b3952e489caeb601353bf58, type: 3}
   <Price>k__BackingField: 2500
   <isReward>k__BackingField: 0
   <attachObject>k__BackingField: {fileID: 7680419066340469319, guid: 46215f485cc2c8943985f0fd31ba7a83, type: 3}

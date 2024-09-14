@@ -37,7 +37,6 @@ public class EnemyMoveState : State
 
     public override void OnStateExit()
     {
-        navMeshAgent.enabled = false;
         navMeshAgent.speed = 0;
         characterAnimationController.SetBool(walkType, false);
     }

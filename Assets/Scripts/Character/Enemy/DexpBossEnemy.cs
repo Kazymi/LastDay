@@ -83,7 +83,7 @@ public class DexpBossEnemy : EnemyStateMachine
     {
         isAgressive = true;
         ServiceLocator.GetService<ISoundSystem>().PlaySound(SoundType.DexpScream);
-        moveToTargetState.UpdateSpeed(enemyConfiguration.Speed + enemyConfiguration.Speed * 0.1f);
+        moveToTargetState.UpdateSpeed(enemyConfiguration.Speed + enemyConfiguration.Speed * 0.2f);
         characterAnimationController.SetPlay(CharacterAnimationType.WakeUpSecond, true);
         stateMachine.SetState(wakeUPState);
     }

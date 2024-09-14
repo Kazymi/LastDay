@@ -20,4 +20,6 @@ public class DamageTaker : MonoBehaviour, IDamageTaker
     {
         DamageTaked?.Invoke(damage);
     }
+
+    public Vector3 takerPosition => transform.position;
 }

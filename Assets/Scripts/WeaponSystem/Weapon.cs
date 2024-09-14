@@ -5,7 +5,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private WeaponConfiguration weaponConfiguration;
     [SerializeField] private WeaponMain weaponMain;
 
-    private void Awake()
+    private void OnEnable()
     {
         weaponMain.Initialize(weaponConfiguration);
     }

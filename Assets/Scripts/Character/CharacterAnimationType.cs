@@ -12,6 +12,10 @@ public enum CharacterAnimationType
     WalkSecond,
     BossAttackSecond,
     WakeUpSecond,
+    Fall,
+    WakeUpAfterFall,
+    Reaload,
+    
     
     
 }

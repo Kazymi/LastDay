@@ -5,7 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image), typeof(Button))]
 public class AttachmentImage : MonoBehaviour
 {
-    
+    [SerializeField] private Image iconImage;
     [SerializeField] private AttachmentBuyButton attachmentBuyButton;
     private Image image;
     private AttachType attachType;
@@ -40,14 +40,14 @@ public class AttachmentImage : MonoBehaviour
         attachment = ServiceLocator.GetService<IAttachment>();
         attachment.ConnectAttachment(attachmentList, attachType);
         EventBus.RaiseEvent<IAttachmentUpdate>(t => t.AttachmentUpdated());
+        EventBus.RaiseEvent<IUpdateAttachments>(t => t.UpdateAttachments());
     }
 
     public void Setup(Sprite sprite, AttachType attachType, AttachmentList attachmentList)
     {
         attachment = null;
         this.attachType = attachType;
-        image ??= GetComponent<Image>();
-        image.sprite = sprite;
+        iconImage.sprite = sprite;
         this.attachmentList = attachmentList;
         if (attachmentBuyButton != null)
         {

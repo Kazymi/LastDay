@@ -1,8 +1,9 @@
-﻿using CrazyGames;
+﻿using DG.Tweening;
 using UnityEngine;
 
 public class ZombieModelInitializer : MonoBehaviour
 {
+    [SerializeField] private Color deadColor;
     [SerializeField] private ZombieHealthController ZombieHealthController;
     [SerializeField] private GameObject[] zombieModel;
     [SerializeField] private GameObject[] weapons;
@@ -10,9 +11,11 @@ public class ZombieModelInitializer : MonoBehaviour
     [SerializeField] private GameObject[] backPacks;
 
     public SkinnedMeshRenderer meshRenderer { get; private set; }
-    
+    private MeshRenderer _meshRenderer;
+
     private GameObject weapon;
     private GameObject backPack;
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -32,38 +35,25 @@ public class ZombieModelInitializer : MonoBehaviour
 
     private void ZombieDead()
     {
+        if (isDead == false)
+        {
+            _meshRenderer.material.DOColor(deadColor, "_Color", 0.3f);
+            meshRenderer.material.DOColor(deadColor, "_Color", 0.3f);
+            isDead = true;
+        }
+
         if (weapon != null)
         {
             weapon.transform.parent = null;
             weapon.GetComponent<Rigidbody>().isKinematic = false;
-            CrazySDK.Instance.GetSystemInfo(systemInfo =>
-            {
-                if (systemInfo.device.type == "desktop")
-                {
-                    Destroy(weapon,25f);
-                }
-                else
-                {
-                    Destroy(weapon);
-                }
-            });
+           Destroy(weapon,25);
         }
 
         if (backPack != null)
         {
             backPack.GetComponent<Rigidbody>().isKinematic = false;
             backPack.transform.parent = null;
-            CrazySDK.Instance.GetSystemInfo(systemInfo =>
-            {
-                if (systemInfo.device.type == "desktop")
-                {
-                    Destroy(backPack,25f);
-                }
-                else
-                {
-                    Destroy(backPack);
-                }
-            });
+            Destroy(backPack,25);
         }
     }
 
@@ -87,10 +77,11 @@ public class ZombieModelInitializer : MonoBehaviour
             weapon = weapons[Random.Range(0, weapons.Length)];
             weapon.SetActive(true);
         }
-        
+
         if (faces.Length > 0)
         {
             var face = faces[Random.Range(0, faces.Length)];
+            _meshRenderer = face.GetComponent<MeshRenderer>();
             face.SetActive(true);
         }
 

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EventBusSystem;
 using UnityEngine;
 
-public class AttachmentBuilder : MonoBehaviour
+public class AttachmentBuilder : MonoBehaviour, IUpdateAttachments
 {
     [SerializeField] private bool isDestoryOutline;
     [SerializeField] private WeaponType weaponType;
@@ -13,6 +14,12 @@ public class AttachmentBuilder : MonoBehaviour
     private void OnEnable()
     {
         Show();
+        EventBus.Subscribe(this);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe(this);
     }
 
     private void Show()
@@ -144,4 +151,19 @@ public class AttachmentBuilder : MonoBehaviour
         Destroy(destroyObject.gameObject);
         DestroyObjectList(objects);
     }
+
+    public void AttachmentUpdated()
+    {
+        Show();
+    }
+
+    public void UpdateAttachments()
+    {
+        Show();
+    }
+}
+
+public interface IUpdateAttachments : IGlobalSubscriber
+{
+    void UpdateAttachments();
 }

@@ -13,6 +13,7 @@ public class EnemyStateMachine : MonoBehaviour
     protected TargetSearcher targetSearcher;
     protected NavMeshAgent navMeshAgent;
     protected global::StateMachine.StateMachine stateMachine;
+    protected EnemyFallState enemyFallState;
     protected ICharacterAnimationController characterAnimationController;
 
     private void Start()
@@ -27,6 +28,12 @@ public class EnemyStateMachine : MonoBehaviour
         zombieombieHealthController.HealthEmpty += ZombieDead;
     }
 
+    public void ToFall()
+    {
+        Debug.Log("ToFall");
+        stateMachine.SetState(enemyFallState);
+    }
+
     private void OnDisable()
     {
         zombieombieHealthController.HealthEmpty -= ZombieDead;
@@ -34,6 +41,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void ZombieDead()
     {
+        navMeshAgent.enabled = false;
         SaveData.Instance.Wallet.AddMoney(enemyConfiguration.AddMoney);
         stateMachine.SetState(new State());
     }
@@ -59,31 +67,76 @@ public class EnemyStateMachine : MonoBehaviour
     private void InitializeStateMachine()
     {
         var idleState = new EnemyIdleState(characterAnimationController);
-        var wakeUPState = new EnemyWakeUpState(characterAnimationController);
         var speed = Random.Range(enemyConfiguration.Speed * 0.8f, enemyConfiguration.Speed * 1.3f);
         var moveToTargetState =
             new EnemyMoveState(characterAnimationController, navMeshAgent, speed, targetSearcher);
         var attackState = new EnemyAttackState(characterAnimationController, transform, targetSearcher);
+        enemyFallState = new EnemyFallState(characterAnimationController, navMeshAgent, speed);
+        var enemyStandUpAfterFallState = new StandUpAfterFallState(characterAnimationController);
+
+        enemyFallState.AddTransition(new StateTransition(enemyStandUpAfterFallState, new TemporaryCondition(0.6f)));
+        enemyStandUpAfterFallState.AddTransition(new StateTransition(moveToTargetState,
+            new AnimationFinishCondition(characterAnimationController.Animator,
+                CharacterAnimationType.WakeUpAfterFall.ToString())));
 
         attackState.AddTransition(new StateTransition(moveToTargetState,
             new FuncCondition(() => attackState.IsNearTarget == false)));
-
-        idleState.AddTransition(new StateTransition(wakeUPState,
-            new FuncCondition(() => targetSearcher.IsTargetFounded)));
-
-        wakeUPState.AddTransition(new StateTransition(moveToTargetState,
-            new AnimationFinishCondition(animator, CharacterAnimationType.WakeUP.ToString())));
 
         moveToTargetState.AddTransition(new StateTransition(attackState,
             new FuncCondition(() => moveToTargetState.IsNearTarget)));
         moveToTargetState.AddTransition(new StateTransition(idleState,
             new FuncCondition(() => targetSearcher.IsTargetFounded == false)));
 
+        idleState.AddTransition(new StateTransition(moveToTargetState,
+            new FuncCondition(() => targetSearcher.IsTargetFounded)));
+
         stateMachine = new global::StateMachine.StateMachine(idleState);
-        StateMachineInitialized(idleState, wakeUPState, moveToTargetState, attackState);
+        StateMachineInitialized(idleState, idleState, moveToTargetState, attackState);
     }
 
     protected virtual void StateMachineInitialized(State idle, State walkeUp, State moveToTarget, State attackState)
     {
+    }
+}
+
+public class EnemyFallState : State
+{
+    private readonly ICharacterAnimationController _characterAnimationController;
+    private readonly NavMeshAgent _navMeshAgent;
+    private readonly float speed;
+
+    public EnemyFallState(ICharacterAnimationController characterAnimationController, NavMeshAgent navMeshAgent,
+        float speed)
+    {
+        _characterAnimationController = characterAnimationController;
+        _navMeshAgent = navMeshAgent;
+        this.speed = speed;
+    }
+
+    public override void OnStateEnter()
+    {
+        _navMeshAgent.enabled = true;
+        _navMeshAgent.speed = speed;
+        _characterAnimationController.SetPlay(CharacterAnimationType.Fall, true);
+    }
+}
+
+public class StandUpAfterFallState : State
+{
+    private readonly ICharacterAnimationController _characterAnimationController;
+
+    public StandUpAfterFallState(ICharacterAnimationController characterAnimationController)
+    {
+        _characterAnimationController = characterAnimationController;
+    }
+
+    public override void OnStateEnter()
+    {
+        _characterAnimationController.SetBool(CharacterAnimationType.WakeUpAfterFall, true);
+    }
+
+    public override void OnStateExit()
+    {
+        _characterAnimationController.SetBool(CharacterAnimationType.WakeUpAfterFall, false);
     }
 }

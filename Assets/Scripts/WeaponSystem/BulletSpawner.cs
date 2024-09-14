@@ -17,11 +17,11 @@ public class BulletSpawner : MonoBehaviour, IBulletSpawner
         ServiceLocator.Unsubscribe<IBulletSpawner>();
     }
 
-    public void SpawnBullet(BulletType effectType, float damage)
+    public void SpawnBullet(BulletType effectType, float damage, Transform startPos, Vector3 endPos)
     {
         TryToInitializeEffect(effectType);
         var newEffect = effects[effectType];
-        newEffect.Setup(damage);
+        newEffect.Setup(damage, startPos, endPos);
     }
 
     private void TryToInitializeEffect(BulletType effectType)
@@ -51,7 +51,7 @@ public class BulletSpawner : MonoBehaviour, IBulletSpawner
 
 public interface IBulletSpawner
 {
-    void SpawnBullet(BulletType effectType, float damage);
+    void SpawnBullet(BulletType effectType, float damage, Transform startPos, Vector3 endPos);
 }
 
 [Serializable]

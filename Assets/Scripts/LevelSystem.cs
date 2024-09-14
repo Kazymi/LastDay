@@ -1,12 +1,13 @@
-using System;
 using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class LevelSystem : MonoBehaviour, ILevelSystem
 {
+    [SerializeField] private ZombieSpawner[] zombieSpawner;
+    [SerializeField] private ZombieSpawner havySpaner;
     [SerializeField] private LoseScreen loseScreen;
     [SerializeField] private bool isLoop = true;
     [SerializeField] private TMP_Text levelText;
@@ -15,14 +16,12 @@ public class LevelSystem : MonoBehaviour, ILevelSystem
 
     public int AmountZombie;
 
+    private ZombieSpawner lastSpawner;
     private int startMoney;
     public int DeadZombie { get; set; } = -1;
 
-    private IZombieSpawner zombieSpawner;
-
     private void Start()
     {
-        zombieSpawner = ServiceLocator.GetService<IZombieSpawner>();
         Initialize();
     }
 
@@ -68,6 +67,16 @@ public class LevelSystem : MonoBehaviour, ILevelSystem
     {
         levelSystemUi.sliderObject.gameObject.SetActive(false);
         levelSystemUi.readyText.gameObject.SetActive(true);
+        var zSpawner = SaveData.Instance.CurrentLevel <= 6
+            ? zombieSpawner[Random.Range(0, zombieSpawner.Length)]
+            : havySpaner;
+        zSpawner.gameObject.SetActive(true);
+        if (lastSpawner != null)
+        {
+            lastSpawner.gameObject.SetActive(false);
+        }
+
+        lastSpawner = zSpawner;
         if (prepareTime != 0)
         {
             var currentTime = prepareTime;
@@ -82,24 +91,12 @@ public class LevelSystem : MonoBehaviour, ILevelSystem
             }
         }
 
-        zombieSpawner.SpawnZombie();
+        zSpawner.SpawnZombie();
         DeadZombie = 0;
-        AmountZombie = zombieSpawner.CurrentZombieAmount;
-        levelText.text = "Lvl" + (SaveData.Instance.CurrentLevel + 1).ToString();
+        AmountZombie = zSpawner.CurrentZombieAmount;
+        levelText.text = $"{Localizator.Instance.GetLocalization("level")} " +
+                         (SaveData.Instance.CurrentLevel + 1).ToString();
         levelSystemUi.sliderObject.gameObject.SetActive(true);
         levelSystemUi.readyText.gameObject.SetActive(false);
     }
-}
-
-[Serializable]
-public class LevelSystemUI
-{
-    [field: SerializeField] public Image slider { get; private set; }
-    [field: SerializeField] public GameObject sliderObject { get; private set; }
-    [field: SerializeField] public TMP_Text readyText { get; private set; }
-}
-
-public interface ILevelSystem
-{
-    int DeadZombie { set; get; }
 }

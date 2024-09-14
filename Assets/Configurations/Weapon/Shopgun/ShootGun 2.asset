@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: ShootGun 2
   m_EditorClassIdentifier: 
   <FireRate>k__BackingField: 0.16
-  <Damage>k__BackingField: 0.5
+  <Damage>k__BackingField: 0.77
   <BulletType>k__BackingField: 1
   <CritChans>k__BackingField: 2
+  <AmounBullet>k__BackingField: 12
+  <Price>k__BackingField: 3000
+  <WeaponVersion>k__BackingField: 2
+  <WeaponSprite>k__BackingField: {fileID: 1469499973, guid: e5597f70bd5af604282fd7177b619f9e, type: 3}
+  <WeaponSpriteForGame>k__BackingField: {fileID: 1020176608, guid: 1d40d21335b146e4f977d2b13ad9b16b, type: 3}
+  <WeaponName>k__BackingField: FN SLP

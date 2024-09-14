@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5536b46b87ef42346b75fdf1e1ec2eb0, type: 3}
   m_Name: PP 2
   m_EditorClassIdentifier: 
-  <FireRate>k__BackingField: 0.2
-  <Damage>k__BackingField: 1.2
+  <FireRate>k__BackingField: 0.16
+  <Damage>k__BackingField: 1.9
   <BulletType>k__BackingField: 0
   <CritChans>k__BackingField: 4
+  <AmounBullet>k__BackingField: 40
+  <Price>k__BackingField: 700
+  <WeaponVersion>k__BackingField: 1
+  <WeaponSprite>k__BackingField: {fileID: -574746393, guid: e5597f70bd5af604282fd7177b619f9e, type: 3}
+  <WeaponSpriteForGame>k__BackingField: {fileID: 252930881, guid: 1d40d21335b146e4f977d2b13ad9b16b, type: 3}
+  <WeaponName>k__BackingField: P90

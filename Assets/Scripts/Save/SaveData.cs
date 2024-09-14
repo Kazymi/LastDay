@@ -8,16 +8,29 @@ public class SaveData : MonoBehaviour
     [SerializeField] private bool hack;
     [SerializeField] private TMP_Text moneyText; //todo
 
+    public bool isInfinitBullet;
 
+    public bool lastHit;
     public bool IsTutorialOpen;
     public bool IsGameStarted;
 
     public int SpawnedZombie;
 
     public bool WeaponFound;
+
+    public bool IsInvinsible
+    {
+        get => save.IsInvinsible;
+        set => save.IsInvinsible = value;
+    }
+
     private const string SaveKey = "TheDayLast";
     private Save save;
 
+    public WeaponVersion CurrentWeaponVersion;
+    public WeaponType FreeWeapon = WeaponType.PP;
+
+    public List<WeaponSave> WeaponTypes => save.WeaponTypes;
 
     public bool IsTutorialLocationCompleted
     {
@@ -32,6 +45,12 @@ public class SaveData : MonoBehaviour
     }
 
     public static SaveData Instance;
+
+    public LocalizationType LocalizationType
+    {
+        get => save.LocalizationType;
+        set => save.LocalizationType = value;
+    }
 
     public List<WeaponType> BuyWeapon
     {
@@ -51,16 +70,16 @@ public class SaveData : MonoBehaviour
         set => save.CurrentLevel = value;
     }
 
+    public bool IsHeaveWeaponUnlock
+    {
+        get => save.IsHeavyWeaponUnlocker;
+        set => save.IsHeavyWeaponUnlocker = value;
+    }
+
     public List<AttachmentsSave> AttachList
     {
         get => save.AttachmentsSaves;
         set => save.AttachmentsSaves = value;
-    }
-
-    public WeaponType FreeWeapon
-    {
-        get => save.FreeWeapon;
-        set => save.FreeWeapon = value;
     }
 
     public WeaponType SelectedWeapon
@@ -88,10 +107,9 @@ public class SaveData : MonoBehaviour
         //     save.IsTutorialLocationCompleted = isFirstMap;
         //     save.BuyWeapon = new List<WeaponType>();
         // }
-
-        save.FreeWeapon = WeaponType.Clear;
         Instance = this;
         Wallet = new Wallet(moneyText, save);
+        Save();
     }
 
     public void Save()
@@ -123,11 +141,15 @@ public class Save
     public int CurrentLevel;
 
     public bool IsTutorialLocationCompleted;
+    public bool IsInvinsible;
+    public bool IsHeavyWeaponUnlocker;
     public bool IsTutorialMenuCompleted;
 
+    public LocalizationType LocalizationType = LocalizationType.Ru;
+
     public bool IsSoundAcivated = true;
-    public WeaponType FreeWeapon;
     public WeaponType SelectedWeapon = WeaponType.PP;
+    public List<WeaponSave> WeaponTypes = new List<WeaponSave>();
 
     public void Initialize()
     {
@@ -137,6 +159,17 @@ public class Save
             AttachmentsSaves.Add(new AttachmentsSave()
                 {WeaponType = weaponType, AttachTypes = new List<AttachType>(), BoughtTypes = new List<AttachType>()});
         }
+
+        WeaponTypes.Add(new WeaponSave() {WeaponType = WeaponType.PP, WeaponVersion = WeaponVersion.PP});
+        WeaponTypes.Add(new WeaponSave() {WeaponType = WeaponType.AR, WeaponVersion = WeaponVersion.AR});
+        WeaponTypes.Add(new WeaponSave() {WeaponType = WeaponType.MAuto, WeaponVersion = WeaponVersion.Heavy});
+        WeaponTypes.Add(new WeaponSave() {WeaponType = WeaponType.Shotgun, WeaponVersion = WeaponVersion.ShotGun});
+        WeaponTypes.Add(new WeaponSave() {WeaponType = WeaponType.Clear, WeaponVersion = WeaponVersion.Bonus});
+        WeaponTypes.Add(new WeaponSave() {WeaponType = WeaponType.Clear, WeaponVersion = WeaponVersion.BonusSecond});
+        BuyWeapon.Add(WeaponType.PP);
+        BuyWeapon.Add(WeaponType.AR);
+        BuyWeapon.Add(WeaponType.Shotgun);
+        BuyWeapon.Add(WeaponType.MAuto);
     }
 }
 
@@ -146,4 +179,11 @@ public class AttachmentsSave
     public WeaponType WeaponType;
     public List<AttachType> AttachTypes;
     public List<AttachType> BoughtTypes;
+}
+
+[Serializable]
+public class WeaponSave
+{
+    public WeaponType WeaponType;
+    public WeaponVersion WeaponVersion;
 }

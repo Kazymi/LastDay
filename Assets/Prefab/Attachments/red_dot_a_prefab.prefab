@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7571924833612803294}
   - component: {fileID: 1003290909475984252}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: red_dot_a_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,11 +120,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 247587cea8c27f944a8705e92088a738, type: 2}
     - target: {fileID: -2032130249388302506, guid: 9898cee6dd75e344da4af65fdd97b18f, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -1551678919232626915, guid: 9898cee6dd75e344da4af65fdd97b18f, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 9898cee6dd75e344da4af65fdd97b18f, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 9898cee6dd75e344da4af65fdd97b18f, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9898cee6dd75e344da4af65fdd97b18f, type: 3}

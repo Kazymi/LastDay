@@ -1,10 +1,8 @@
 ﻿using System.Linq;
-using CrazyGames;
-using DG.Tweening;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 [RequireComponent(typeof(Button))]
 public class AttachmentBuyButton : MonoBehaviour
@@ -13,6 +11,32 @@ public class AttachmentBuyButton : MonoBehaviour
     [SerializeField] private Sprite reward;
     private IAttachment attachment;
     private AttachType attachType;
+
+    private const int RewardID = 1;
+    private bool isRewardClicked;
+
+    private void OnEnable()
+    {
+        YandexGame.RewardVideoEvent += Reward;
+    }
+
+    private void OnDisable()
+    {
+        YandexGame.RewardVideoEvent -= Reward;
+    }
+
+    private void Reward(int id)
+    {
+        if (id == RewardID && isRewardClicked)
+        {
+            SaveData.Instance.AttachList.Where(t => t.WeaponType == attachment.CurrentWeapon).ToList()[0]
+                .BoughtTypes
+                .Add(attachType);
+            SaveData.Instance.Save();
+            Destroy(gameObject);
+        }
+    }
+
 
     private int price;
 
@@ -36,7 +60,7 @@ public class AttachmentBuyButton : MonoBehaviour
         }
         else
         {
-            GetComponentInChildren<TMP_Text>().SetText("Free");
+            GetComponentInChildren<TMP_Text>().SetText(Localizator.Instance.GetLocalization("free"));
             for (int i = 0; i < transform.childCount; i++)
             {
                 var image = transform.GetChild(i).GetComponent<Image>();
@@ -64,14 +88,8 @@ public class AttachmentBuyButton : MonoBehaviour
     {
         if (price == 0)
         {
-            CrazyAds.Instance.beginAdBreakRewarded(() =>
-            {
-                SaveData.Instance.AttachList.Where(t => t.WeaponType == attachment.CurrentWeapon).ToList()[0]
-                    .BoughtTypes
-                    .Add(attachType);
-                SaveData.Instance.Save();
-                Destroy(gameObject);
-            });
+            isRewardClicked = true;
+            YandexGame.RewVideoShow(RewardID);
         }
         else if (SaveData.Instance.Wallet.IsCanBeReduce(price))
         {

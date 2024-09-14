@@ -10,10 +10,7 @@ public class ParametersMenu : MonoBehaviour, IAttachmentUpdate
 {
     [SerializeField] private bool isAutomatickShow;
     [SerializeField] private AttachmentConfigurationConstructor attachmentConfigurationConstructor;
-    [SerializeField] private Image fadeImage;
     [SerializeField] private GameObject weaponContainer;
-    [SerializeField] private GameObject shopPanel;
-    [SerializeField] private GameObject updatePanel;
 
     [SerializeField] private WeaponStorage weaponStorage;
     [SerializeField] private Image damageImag;
@@ -21,11 +18,8 @@ public class ParametersMenu : MonoBehaviour, IAttachmentUpdate
     [SerializeField] private Image fireRate;
     [SerializeField] private Image fireBonusRate;
     [SerializeField] private Image amountImage;
-    [SerializeField] private Image amountBonusImage;
     [SerializeField] private Image critChansImage;
     [SerializeField] private Image critChansBonusImage;
-
-    [SerializeField] private Button selectButton;
 
     private void OnEnable()
     {
@@ -41,17 +35,12 @@ public class ParametersMenu : MonoBehaviour, IAttachmentUpdate
     {
         EventBus.Unsubscribe(this);
     }
-
-    private void Awake()
-    {
-        selectButton.onClick.AddListener(Select);
-    }
+    
 
     public void UpdateVisible()
     {
         ShowParameters();
-        
-        selectButton.interactable = SaveData.Instance.FreeWeapon != SaveData.Instance.SelectedWeapon;
+      
     }
     private void UpdateBonusStats()
     {
@@ -102,7 +91,6 @@ public class ParametersMenu : MonoBehaviour, IAttachmentUpdate
 
     private void ShowParameters()
     {
-        fadeImage.DOFade(0.96f, 0.3f);
         var currentParameters =
             weaponStorage.WeaponClassificators.Where(t => t.WeaponType == SaveData.Instance.FreeWeapon).ToList()[0];
         damageImag.DOFillAmount(currentParameters.WeaponConfiguration.Damage / 10f, 0.5f);
@@ -113,19 +101,6 @@ public class ParametersMenu : MonoBehaviour, IAttachmentUpdate
         UpdateBonusStats();
     }
 
-    private void Close()
-    {
-        fadeImage.DOFade(0, 0.3f);
-        shopPanel.gameObject.SetActive(true);
-        updatePanel.gameObject.SetActive(false);
-    }
-
-    private void Select()
-    {
-        SaveData.Instance.SelectedWeapon = SaveData.Instance.FreeWeapon;
-        selectButton.interactable = SaveData.Instance.FreeWeapon != SaveData.Instance.SelectedWeapon;
-        SaveData.Instance.Save();
-    }
 
     public void AttachmentUpdated()
     {

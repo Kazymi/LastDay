@@ -8,6 +8,8 @@ public class WeaponEffectSpawner : MonoBehaviour
 
     private IEffectSpawner effectSpawner;
 
+    public Transform StartPositionEffect => startPositionEffect;
+
     private void Start()
     {
         effectSpawner = ServiceLocator.GetService<IEffectSpawner>();

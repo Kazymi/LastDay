@@ -1,0 +1,184 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe320e66c56a6d54cb7a5b1591dc3a9d, type: 3}
+  m_Name: LocalizationLibrary
+  m_EditorClassIdentifier: 
+  <Localizations>k__BackingField:
+  - <LocationID>k__BackingField: shop
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u041C\u0430\u0433\u0430\u0437\u0438\u043D"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: WEAPON SHOP
+  - <LocationID>k__BackingField: inv
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u041D\u0435\u0443\u044F\u0437\u0432\u0438\u043C\u043E\u0441\u0442\u044C"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Invulnerability
+  - <LocationID>k__BackingField: inf
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0411\u0435\u0441\u043A\u043E\u043D\u0435\u0447\u043D\u044B\u0435"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Infinite
+  - <LocationID>k__BackingField: start
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u041D\u0430\u0447\u0430\u0442\u044C \u0432\u044B\u0436\u0438\u0432\u0430\u043D\u0438\u0435"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Start survival
+  - <LocationID>k__BackingField: control
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0423\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Control
+  - <LocationID>k__BackingField: free
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0411\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u043E"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Free
+  - <LocationID>k__BackingField: upgrade
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0435"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Upgrade
+  - <LocationID>k__BackingField: close
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0417\u0430\u043A\u0440\u044B\u0442\u044C"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Close
+  - <LocationID>k__BackingField: damage
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0423\u0440\u043E\u043D"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Damage
+  - <LocationID>k__BackingField: rate
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Rate of fire
+  - <LocationID>k__BackingField: shots
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0412\u044B\u0441\u0442\u0440\u0435\u043B\u044B"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Shots
+  - <LocationID>k__BackingField: precision
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0422\u043E\u0447\u043D\u043E\u0441\u0442\u044C"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: precision
+  - <LocationID>k__BackingField: select
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0412\u044B\u0431\u0440\u0430\u0442\u044C"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Select
+  - <LocationID>k__BackingField: level
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Level
+  - <LocationID>k__BackingField: ammo
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u041D\u0435\u0442 \u043F\u0430\u0442\u0440\u043E\u043D\u043E\u0432"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: NO AMMO
+  - <LocationID>k__BackingField: menu
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u041C\u0435\u043D\u044E"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Menu
+  - <LocationID>k__BackingField: nlevel
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u041D\u043E\u0432\u044B\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: NEXT LEVEL
+  - <LocationID>k__BackingField: double
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0423\u0434\u0432\u043E\u0438\u0442\u044C"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: DOUBLE
+  - <LocationID>k__BackingField: dead
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0412\u044B \u043F\u043E\u0433\u0438\u0431\u043B\u0438"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: YOU'RE DEAD
+  - <LocationID>k__BackingField: win
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C \u043F\u0440\u043E\u0439\u0434\u0435\u043D"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: level completed
+  - <LocationID>k__BackingField: restart
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0417\u0430\u043D\u043E\u0433\u043E"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: restart
+  - <LocationID>k__BackingField: cmission
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u044C
+        \u043C\u0438\u0441\u0441\u0438\u044E?"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Complete the mission?
+  - <LocationID>k__BackingField: yes
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0414\u0430"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Yes
+  - <LocationID>k__BackingField: no
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u041D\u0435\u0442"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: no
+  - <LocationID>k__BackingField: infi
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u041C\u041D\u041E\u0413\u041E"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: INFINITE
+  - <LocationID>k__BackingField: lang
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u042F\u0437\u044B\u043A"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Language
+  - <LocationID>k__BackingField: boss
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u0411\u043E\u0441\u0441"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: Boss
+  - <LocationID>k__BackingField: rewa
+    <LocalizationConfigurations>k__BackingField:
+    - <LocalizationType>k__BackingField: 0
+      <Text>k__BackingField: "\u041D\u0430 \u043E\u0434\u0438\u043D \u0431\u043E\u0439"
+    - <LocalizationType>k__BackingField: 1
+      <Text>k__BackingField: For one fight

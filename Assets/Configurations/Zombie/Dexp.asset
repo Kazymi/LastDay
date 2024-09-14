@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de0139e597de9f4aa9cae048c5138af, type: 3}
   m_Name: Dexp
   m_EditorClassIdentifier: 
-  <AddMoney>k__BackingField: 125
+  <AddMoney>k__BackingField: 150
   <Speed>k__BackingField: 3
   <Damage>k__BackingField: 5

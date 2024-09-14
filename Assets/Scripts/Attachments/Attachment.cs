@@ -108,6 +108,7 @@ public class Attachment : MonoBehaviour, IAttachment
         attachmentList.attachType = attachType;
         var currentConfiguration =
             attachConfigurations.AllAttachments.Where(t => t.AttachType == attachType).ToList()[0];
+        attachmentList.MainImage.gameObject.SetActive(true);
         attachmentList.MainImage.sprite = currentConfiguration.Icon;
         attachmentList.CanBeAttachImage.gameObject.SetActive(false);
         var newAttachObject = Instantiate(currentConfiguration.attachObject, attachmentList.Center);

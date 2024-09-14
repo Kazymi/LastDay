@@ -2,10 +2,13 @@
 
 public class PlayerHealthBase : HealthController
 {
-    [Button("Take testDamage")]
-    private void TakeDamage()
+    protected override void DamageReceived(float damage)
     {
-        DamageReceived(5);
+        if (SaveData.Instance.lastHit == false)
+        {
+            if (SaveData.Instance.IsInvinsible) return;
+        }
+
+        base.DamageReceived(damage);
     }
 }
-

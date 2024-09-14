@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,9 +10,11 @@ public class WeaponMain : MonoBehaviour, IWeaponMain
     [SerializeField] private PlayerHealthBase playerHealthBase;
     [SerializeField] private bool readyToShot;
     private WeaponConfiguration weaponConfiguration;
+    private WeaponEffectSpawner _weaponEffectSpawner;
 
+    private bool isReload;
     private bool isCanBeShot;
-    public bool CanBeShot => isCanBeShot && readyToShot;
+    public bool CanBeShot => isCanBeShot && readyToShot && isReload == false;
 
     private float shotCooldown;
 
@@ -19,8 +22,12 @@ public class WeaponMain : MonoBehaviour, IWeaponMain
     private IPlayerTargetSearcher targetSearcher;
     private IPlayerAnimatorController animatorController;
 
+    public Dictionary<WeaponConfiguration, BulletStorage> amountBullet =
+        new Dictionary<WeaponConfiguration, BulletStorage>();
+
     private Dictionary<ParametersType, float> fixValue;
 
+    public WeaponType CurrentType { get; private set; }
     public WeaponConfiguration WeaponConfiguration => weaponConfiguration;
     public float CritChance => GetFixParameters(ParametersType.CritChance);
     public event Action Shoted;
@@ -46,12 +53,19 @@ public class WeaponMain : MonoBehaviour, IWeaponMain
         Tick();
         ShotCooldown();
         ReadyShotCheck();
+        if (Input.GetKeyDown(KeyCode.R) && isReload == false) StartCoroutine(Reload(weaponConfiguration));
     }
 
     public void Initialize(WeaponConfiguration weaponConfiguration)
     {
         this.weaponConfiguration = weaponConfiguration;
         GenerateParametersWithParameters();
+        if (amountBullet.ContainsKey(weaponConfiguration) == false)
+        {
+            amountBullet.Add(weaponConfiguration,
+                new BulletStorage()
+                    {AmountBullet = weaponConfiguration.AmounBullet, MaxBullet = weaponConfiguration.AmounBullet * 8});
+        }
     }
 
     private void ReadyShotCheck()
@@ -74,21 +88,68 @@ public class WeaponMain : MonoBehaviour, IWeaponMain
             return;
         }
 
+        if (weaponConfiguration == null) return;
+        if (amountBullet.ContainsKey(weaponConfiguration) && amountBullet[weaponConfiguration].AmountBullet == 0)
+        {
+            if (isReload == false) StartCoroutine(Reload(weaponConfiguration));
+            return;
+        }
+
         if (shotCooldown <= 0)
         {
             Shoot();
+            amountBullet[weaponConfiguration].AmountBullet--;
             shotCooldown = GetFixParameters(ParametersType.FireRate);
         }
         else
         {
             shotCooldown -= Time.deltaTime;
         }
+
+        if (amountBullet[weaponConfiguration].AmountBullet <= 0 && isReload == false)
+        {
+            StartCoroutine(Reload(weaponConfiguration));
+        }
+    }
+
+    private IEnumerator Reload(WeaponConfiguration weaponConfiguration)
+    {
+        if (amountBullet[weaponConfiguration].MaxBullet == 0 && SaveData.Instance.isInfinitBullet == false) yield break;
+        isReload = true;
+        animatorController.SetPlay(CharacterAnimationType.Reaload, true, 1);
+        yield return new WaitForSeconds(2f);
+        var currentBullet = weaponConfiguration.AmounBullet;
+        if (SaveData.Instance.isInfinitBullet == false)
+        {
+            if (amountBullet[weaponConfiguration].MaxBullet - currentBullet < 0)
+            {
+                currentBullet = amountBullet[weaponConfiguration].MaxBullet;
+            }
+
+            amountBullet[weaponConfiguration].AmountBullet = currentBullet;
+            if (SaveData.Instance.isInfinitBullet == false)
+            {
+                amountBullet[weaponConfiguration].MaxBullet -= currentBullet;
+            }
+        }
+        else
+        {
+            amountBullet[weaponConfiguration].AmountBullet = weaponConfiguration.AmounBullet;
+        }
+
+        isReload = false;
     }
 
     private void Shoot()
     {
+        if (_weaponEffectSpawner == null || _weaponEffectSpawner.gameObject.activeInHierarchy == false)
+        {
+            _weaponEffectSpawner = GetComponentInChildren<WeaponEffectSpawner>();
+        }
+
         animatorController.SetPlay(CharacterAnimationType.Shot, false, 2);
-        bulletSpawner.SpawnBullet(weaponConfiguration.BulletType, GetFixParameters(ParametersType.Damage));
+        bulletSpawner.SpawnBullet(weaponConfiguration.BulletType, GetFixParameters(ParametersType.Damage),
+            _weaponEffectSpawner.StartPositionEffect, targetSearcher.FoundedTarget.TargetPosition);
         Shoted?.Invoke();
     }
 
@@ -147,7 +208,7 @@ public class WeaponMain : MonoBehaviour, IWeaponMain
         switch (parametersType)
         {
             case ParametersType.Damage:
-               return fixValue[ParametersType.Damage];
+                return fixValue[ParametersType.Damage];
                 break;
             case ParametersType.FireRate:
                 return fixValue[ParametersType.FireRate];
@@ -165,4 +226,10 @@ public interface IWeaponMain
 {
     WeaponConfiguration WeaponConfiguration { get; }
     float CritChance { get; }
+}
+
+public class BulletStorage
+{
+    public int AmountBullet;
+    public int MaxBullet;
 }

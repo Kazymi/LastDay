@@ -15,4 +15,6 @@ public enum WeaponType
     MAutoSecond,
     MAutoThird,
     Clear,
+    ARReward,
+    ARMinigun,
 }

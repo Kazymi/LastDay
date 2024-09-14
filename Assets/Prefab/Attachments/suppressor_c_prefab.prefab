@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1620649126666424977}
   - component: {fileID: -2797912059781685587}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: suppressor_c_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: ec97341a2f9e79641aa547937a9ced92, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec97341a2f9e79641aa547937a9ced92, type: 3}

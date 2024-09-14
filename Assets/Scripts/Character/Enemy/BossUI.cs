@@ -42,7 +42,7 @@ public class BossUI : MonoBehaviour, IBossUI
 
         sliderPanel.gameObject.SetActive(true);
         bossSlider.fillAmount = 0;
-        var textBoss = bossText.text;
+        var textBoss = Localizator.Instance.GetLocalization("boss");
         bossText.text = "";
         bossSlider.DOFillAmount(1, 1f);
         foreach (var text in textBoss)

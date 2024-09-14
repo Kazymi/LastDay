@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6689218449652212291}
   - component: {fileID: -5859466962375667768}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: laser_a_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 6343b827963588a408a25dbc7c62e96e, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6343b827963588a408a25dbc7c62e96e, type: 3}

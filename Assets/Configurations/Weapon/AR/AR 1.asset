@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5536b46b87ef42346b75fdf1e1ec2eb0, type: 3}
   m_Name: AR 1
   m_EditorClassIdentifier: 
-  <FireRate>k__BackingField: 0.3
-  <Damage>k__BackingField: 1
+  <FireRate>k__BackingField: 0.1
+  <Damage>k__BackingField: 1.2
   <BulletType>k__BackingField: 0
-  <CritChans>k__BackingField: 3
+  <CritChans>k__BackingField: 5
+  <AmounBullet>k__BackingField: 30
+  <Price>k__BackingField: 0
+  <WeaponVersion>k__BackingField: 0
+  <WeaponSprite>k__BackingField: {fileID: 181907898, guid: e5597f70bd5af604282fd7177b619f9e, type: 3}
+  <WeaponSpriteForGame>k__BackingField: {fileID: 729566085, guid: 1d40d21335b146e4f977d2b13ad9b16b, type: 3}
+  <WeaponName>k__BackingField: AK74

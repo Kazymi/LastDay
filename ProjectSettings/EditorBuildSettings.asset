@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/crazygames-developer-assets-2022/LoadScene.unity
+    guid: 800cb1fb78764bf4b85e0402f6429fdf
+  - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: 77d94b1d729f7cc42afa9901a007caab
   - enabled: 1
     path: Assets/Scenes/Map_1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/Map_2.unity
-    guid: 174f52f8f11fe384a95ddcc5d0f7a4d6
   m_configObjects: {}

@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: ShootGun
   m_EditorClassIdentifier: 
   <FireRate>k__BackingField: 0.3
-  <Damage>k__BackingField: 0.4
+  <Damage>k__BackingField: 0.77
   <BulletType>k__BackingField: 1
   <CritChans>k__BackingField: 2
+  <AmounBullet>k__BackingField: 6
+  <Price>k__BackingField: 0
+  <WeaponVersion>k__BackingField: 2
+  <WeaponSprite>k__BackingField: {fileID: 178443782, guid: e5597f70bd5af604282fd7177b619f9e, type: 3}
+  <WeaponSpriteForGame>k__BackingField: {fileID: -1300079230, guid: 1d40d21335b146e4f977d2b13ad9b16b, type: 3}
+  <WeaponName>k__BackingField: Shorty

@@ -1,5 +1,4 @@
 using System.Collections;
-using CrazyGames;
 using DG.Tweening;
 using UnityEngine;
 
@@ -49,19 +48,9 @@ public class RagdollController : MonoBehaviour
 
     private IEnumerator Dead()
     {
-        var cooldown = 25;
-        var deadCooldown = 6;
-        CrazySDK.Instance.GetSystemInfo(systemInfo =>
-        {
-            if (systemInfo.device.type == "desktop")
-            {
-            }
-            else
-            {
-                deadCooldown = 3;
-                cooldown = 4;
-            }
-        });
+        var cooldown = 4;
+        var deadCooldown = 4;
+       
         yield return new WaitForSeconds(cooldown);
         SetRigidBody(true);
         parentCollider.transform.DOMove(parentCollider.transform.position + Vector3.down * 3, deadCooldown);

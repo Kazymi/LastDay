@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7760535581948260286}
   - component: {fileID: -6313557248462828198}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: lamp_laser_b_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 682b0d8908a64b7489c7dc519affc7ea, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 682b0d8908a64b7489c7dc519affc7ea, type: 3}

@@ -37,3 +37,7 @@ MonoBehaviour:
     <WeaponType>k__BackingField: 10
   - <WeaponConfiguration>k__BackingField: {fileID: 11400000, guid: 7a4c9259b555a5242bcfde17c58bb163, type: 2}
     <WeaponType>k__BackingField: 11
+  - <WeaponConfiguration>k__BackingField: {fileID: 11400000, guid: d671de59290414e44a035d4042f676df, type: 2}
+    <WeaponType>k__BackingField: 14
+  - <WeaponConfiguration>k__BackingField: {fileID: 11400000, guid: cc33bd0f136dec3458af7baadc067dcf, type: 2}
+    <WeaponType>k__BackingField: 13
