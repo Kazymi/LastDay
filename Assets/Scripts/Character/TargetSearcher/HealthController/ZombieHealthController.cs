@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using YG;
 
 public class ZombieHealthController : HealthController
 {
@@ -50,6 +51,7 @@ public class ZombieHealthController : HealthController
         base.Dead();
         if (isAlive)
         {
+            YandexGame.savesData.KilledZombie++;
             SaveData.Instance.SpawnedZombie--;
             ServiceLocator.GetService<ISoundSystem>().PlaySound(SoundType.ZombieDead);
             isAlive = false;

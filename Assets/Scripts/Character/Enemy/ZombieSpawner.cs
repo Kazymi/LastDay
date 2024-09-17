@@ -38,7 +38,7 @@ public class ZombieSpawner : MonoBehaviour, IZombieSpawner
         while (true)
         {
             yield return new WaitForSeconds(casualZombie[currentLvel].spawnInterval);
-            var maxZombie = 60;
+            var maxZombie = 40;
             if (SaveData.Instance.SpawnedZombie >= maxZombie) continue;
             SpawnZombie(currentLvel);
         }
@@ -46,7 +46,7 @@ public class ZombieSpawner : MonoBehaviour, IZombieSpawner
 
     private void SpawnZombie(int levelKey)
     {
-        var spawnCound = isAllSpawn ? 60 : 1;
+        var spawnCound = isAllSpawn ? 40 : 1;
         for (int i = 0; i < spawnCound; i++)
         {
             SaveData.Instance.SpawnedZombie++;

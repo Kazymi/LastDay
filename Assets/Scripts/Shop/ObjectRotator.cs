@@ -6,17 +6,22 @@ public class ObjectRotator : MonoBehaviour
     private Vector3 _mouseReference;
     private Vector3 _mouseOffset;
     private Vector3 _rotation;
+    private Vector3 _startRotation;
     private bool _isRotating;
 
+    private void Awake()
+    {
+        _rotation = transform.localRotation.eulerAngles;
+        _startRotation = transform.localRotation.eulerAngles;
+    }
     private void Start()
     {
         _sensitivity = 0.4f;
-        _rotation = Vector3.zero;
     }
 
     private void OnEnable()
     {
-        transform.localRotation = Quaternion.identity;
+        transform.localRotation = Quaternion.Euler(_startRotation);
     }
 
     private void Update()

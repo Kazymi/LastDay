@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using YG;
 
 public class SaveData : MonoBehaviour
 {
@@ -121,6 +122,7 @@ public class SaveData : MonoBehaviour
     {
         var saveString = JsonUtility.ToJson(saveData);
         PlayerPrefs.SetString(SaveKey, saveString);
+        YandexGame.SaveProgress();
         PlayerPrefs.Save();
     }
 
@@ -139,7 +141,7 @@ public class Save
     public List<WeaponType> BuyWeapon = new List<WeaponType>() {WeaponType.PP};
     public List<AttachmentsSave> AttachmentsSaves;
     public int CurrentLevel;
-
+ 
     public bool IsTutorialLocationCompleted;
     public bool IsInvinsible;
     public bool IsHeavyWeaponUnlocker;
